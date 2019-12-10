@@ -1,0 +1,40 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "src/**/*.js": true,
+    "test/**/*.js": true,
+    "**/*.js.map": true,
+    "**/es": true,
+    "**/lib": true,
+    "**/amd": true,
+    "**/dts": true,
+    "**/temp": true,
+    "**/coverage": true,
+    "**/dist": true,
+    "**/docs": true,
+    "type_definitions/**/*.js": true
+  },
+
+  "workbench.tree.indent": 19,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.colorTheme": "Default Dark+",
+
+  "git.enableSmartCommit": true,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+
+  "editor.suggestSelection": "first",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.autoClosingBrackets": "always",
+  "editor.renderWhitespace": "all",
+  "editor.tabCompletion": "on",
+  "editor.trimAutoWhitespace": true,
+
+  "tslint.alwaysShowRuleFailuresAsWarnings": true,
+  "tslint.autoFixOnSave": true,
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "vsicons.presets.angular": false
+}

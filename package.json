@@ -8,11 +8,20 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "express": "^4.17.1"
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "inversify": "^5.0.1",
+    "reflect-metadata": "^0.1.13",
+    "tsoa": "^2.5.9"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.6",
     "@types/express": "^4.17.2",
+    "@types/node": "^12.12.16",
     "nodemon": "^2.0.1",
+    "ts-node": "^8.5.4",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2"
   }
 }
