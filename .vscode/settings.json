@@ -9,7 +9,7 @@
   "editor.renderWhitespace": "all",
   "editor.tabCompletion": "on",
   "editor.wordWrap": "wordWrapColumn",
-  "editor.wrappingIndent": "same",
+  // "editor.wrappingIndent": "same",
   // "editor.wordWrapColumn": 170,
 
   "eslint.autoFixOnSave": true,
