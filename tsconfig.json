@@ -8,10 +8,7 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "typeRoots": ["node_modules/@types"],
-    "alwaysStrict": true,
-    "types": ["reflect-metadata"],
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "alwaysStrict": true
   },
   "include": ["typings.d.ts", "src/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]

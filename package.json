@@ -7,21 +7,30 @@
   "author": "Aman Nidhi <aman.sharefiles@gmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
+    "watch": "watch 'yarn lint'"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "inversify": "^5.0.1",
-    "reflect-metadata": "^0.1.13",
     "tsoa": "^2.5.9"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.2",
     "@types/node": "^12.12.16",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "nodemon": "^2.0.1",
+    "prettier": "^1.19.1",
     "ts-node": "^8.5.4",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "watch": "^1.0.2"
   }
 }
