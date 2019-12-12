@@ -10,13 +10,10 @@
   "editor.tabCompletion": "on",
   "editor.wordWrap": "wordWrapColumn",
   // "editor.wrappingIndent": "same",
-  // "editor.wordWrapColumn": 170,
+  "editor.wordWrapColumn": 160,
 
   "eslint.autoFixOnSave": true,
-  "eslint.validate": [
-    "javascript",
-    { "language": "typescript", "autoFix": true }
-  ],
+  "eslint.validate": ["javascript", { "language": "typescript", "autoFix": true }],
 
   "[javascript]": {
     "editor.formatOnSave": false
