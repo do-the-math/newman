@@ -1,0 +1,29 @@
+{
+  "workbench.tree.indent": 20,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.autoClosingBrackets": "always",
+  "editor.renderWhitespace": "all",
+  "editor.tabCompletion": "on",
+  "editor.wordWrap": "wordWrapColumn",
+  // "editor.wrappingIndent": "same",
+  // "editor.wordWrapColumn": 170,
+
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    { "language": "typescript", "autoFix": true }
+  ],
+
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "[typescript]": {
+    "editor.formatOnSave": false
+  }
+}

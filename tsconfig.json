@@ -1,0 +1,15 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "removeComments": true,
+    "target": "es2018",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "typeRoots": ["node_modules/@types"],
+    "alwaysStrict": true
+  },
+  "include": ["typings.d.ts", "src/**/*.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
