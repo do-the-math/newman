@@ -5,17 +5,20 @@
   "main": "index.js",
   "repository": "https://skyhavoc@github.com/skyhavoc/newman.git",
   "author": "Aman Nidhi <aman.sharefiles@gmail.com>",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "private": true,
   "scripts": {
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
-    "watch": "watch 'yarn lint'"
+    "watch": "watch 'yarn lint'",
+    "dev": "nodemon ./server/index.ts"
   },
   "dependencies": {
+    "chalk": "^3.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "inversify": "^5.0.1",
+    "microframework": "^0.6.4",
     "tsoa": "^2.5.9"
   },
   "devDependencies": {
