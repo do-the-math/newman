@@ -7,9 +7,8 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "dist",
-    "typeRoots": ["node_modules/@types"],
     "alwaysStrict": true
   },
-  "include": ["typings.d.ts", "src/**/*.ts"],
+  "include": ["server/types/*.*.d.ts", "server/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
