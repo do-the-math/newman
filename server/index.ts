@@ -1,8 +1,9 @@
 import { bootstrapMicroframework } from 'microframework';
 import { expressLoader } from './loaders/express.loader';
-import { routesLoader } from './loaders/routes.loader';
 import { corsLoader } from './loaders/cors.loader';
+import { routesLoader } from './loaders/routes.loader';
 import { initLoader } from './loaders/init.loader';
+import { publicLoader } from './loaders/public.loader';
 import { logError, logInfo } from './utils/log';
 
 bootstrapMicroframework({
@@ -12,13 +13,14 @@ bootstrapMicroframework({
   loaders: [
     initLoader,
     corsLoader,
+    publicLoader,
     routesLoader,
 
     // last
     expressLoader,
   ],
 })
-  .then((e) => {
+  .then(() => {
     logInfo('application bootstraped');
   })
   .catch((err) => {
