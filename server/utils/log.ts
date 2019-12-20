@@ -8,4 +8,6 @@ const logConsole = (ctx): void => console.log(chalk.white(ctx));
 
 const logInfo = (ctx): void => console.log(chalk.yellowBright(ctx));
 
-export { logError, logConsole, logInfo };
+const logBanner = (ctx): void => console.log(chalk.blueBright(ctx));
+
+export { logError, logConsole, logInfo, logBanner };

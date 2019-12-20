@@ -12,9 +12,9 @@ bootstrapMicroframework({
   loaders: [
     initLoader,
     corsLoader,
-    expressLoader,
 
-    // start app
+    // last
+    expressLoader,
   ],
 })
   .then((e) => {

@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
-import { logConsole, logError } from '../utils/log';
+import { logConsole, logError, logBanner } from '../utils/log';
 import { ErrorWithStatus } from '../types/node.extensions';
 import { Application } from 'express';
 
@@ -20,6 +20,7 @@ export const expressLoader = (
       app
         .listen(port, () => {
           logConsole(`--- ${loaderName} loaded`);
+          logBanner(`app started on port ${port}`);
 
           resolve();
         })
