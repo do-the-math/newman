@@ -14,10 +14,12 @@ export const corsLoader = (settings: MicroframeworkSettings): Promise<void> => {
       const whitelist = config.WHITE_LIST_DOMAIN;
 
       const corsOptions = {
-        origin: true,
+        origin: (origin, callback) => {
+          callback(null, true);
+        },
         maxAge: 3600,
       };
-      // app.use();
+      app.use(cors(corsOptions));
 
       logConsole(`--- ${loaderName} loaded`);
 

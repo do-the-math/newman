@@ -4,7 +4,8 @@
   <head>
     <script>
       if (!!window.EventSource) {
-        var source = new EventSource('/countdown');
+        const id = 'id1';
+        var source = new EventSource(`/notifications/stream/${id}`);
 
         source.addEventListener(
           'message',

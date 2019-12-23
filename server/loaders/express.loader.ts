@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
 import { logConsole, logError, logBanner } from '../utils/log';
 import { ErrorWithStatus } from '../types/node.extensions';
@@ -13,9 +12,6 @@ export const expressLoader = (
     try {
       const app: Application = settings.getData('express_app');
       const port: number = settings.getData('port');
-
-      app.use(bodyParser.urlencoded({ extended: true }));
-      app.use(bodyParser.json());
 
       app
         .listen(port, () => {

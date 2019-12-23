@@ -1,7 +1,7 @@
 import { MicroframeworkSettings } from 'microframework';
-import { exampleSSE } from '../api/events/example/countdown';
 import { logConsole, logError } from '../utils/log';
 import apiV1 from './../api/controllers/v1';
+import bodyParser from 'body-parser';
 
 export const routesLoader = (
   settings: MicroframeworkSettings,
@@ -12,11 +12,11 @@ export const routesLoader = (
     try {
       const app = settings.getData('express_app');
 
-      // Register routes
-      app.use('/api/v1', apiV1);
+      app.use(bodyParser.urlencoded({ extended: true }));
+      app.use(bodyParser.json());
 
-      // Register events
-      app.get('/countdown', exampleSSE);
+      // Register routes
+      app.use('/', apiV1);
 
       logConsole(`--- ${loaderName} loaded`);
       resolve();
