@@ -1,21 +1,22 @@
 import { MicroframeworkSettings } from 'microframework';
 import { logConsole, logError } from '../utils/log';
-import { Response } from 'express';
-import { Request } from '../types/express.extensions';
+import apiV1 from './../api/controllers/v1';
+import bodyParser from 'body-parser';
 
-function apiV1(req: Request, res: Response): void {
-  res.send('Sdfs');
-}
-
-export const corsLoader = (settings: MicroframeworkSettings): Promise<void> => {
+export const routesLoader = (
+  settings: MicroframeworkSettings,
+): Promise<void> => {
   const loaderName = 'corsLoader';
 
   return new Promise((resolve, reject) => {
     try {
       const app = settings.getData('express_app');
 
+      app.use(bodyParser.urlencoded({ extended: true }));
+      app.use(bodyParser.json());
+
       // Register routes
-      app.use(apiV1);
+      app.use('/', apiV1);
 
       logConsole(`--- ${loaderName} loaded`);
       resolve();

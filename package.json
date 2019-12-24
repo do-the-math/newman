@@ -10,7 +10,8 @@
   "scripts": {
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
     "watch": "watch 'yarn lint'",
-    "dev": "nodemon ./server/index.ts"
+    "dev": "nodemon ./server/index.ts",
+    "dev:debug": "nodemon --inspect ./server/index.ts"
   },
   "dependencies": {
     "chalk": "^3.0.0",
