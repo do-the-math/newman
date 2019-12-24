@@ -1,6 +1,7 @@
 {
   "workbench.tree.indent": 20,
 
+  "files.insertFinalNewline": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
