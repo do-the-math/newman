@@ -1,16 +1,19 @@
-import { Request, Response } from '../../../../types/express.extensions';
 import EventEmitter from 'events';
+import 'reflect-metadata';
+import { Get, JsonController, Post, Req, Res } from 'routing-controllers';
+import { Request, Response } from './../../../../types/express.extensions';
 
 const myEmitter = new EventEmitter();
-
-export default class NotificationController {
+@JsonController(`/v1/notifications`)
+export class NotificationController {
   /**
-   * @stream - events
+   * streamEvent
    */
-  public noti = (req: Request, res: Response): void => {
-    const connectedId = req.params.id;
+  @Get('/stream/:id')
+  streamEvent(@Req() request: Request, @Res() response: Response): void {
+    const connectedId = request.params.id;
 
-    res.writeHead(200, {
+    response.writeHead(200, {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
       Connection: 'keep-alive',
@@ -18,19 +21,22 @@ export default class NotificationController {
 
     myEmitter.on('event', (data) => {
       if (data.id === connectedId)
-        res.write('data: ' + connectedId + ' ' + Math.random() * 10 + '\n\n');
+        response.write(
+          'data: ' + connectedId + ' ' + Math.random() * 10 + '\n\n',
+        );
     });
-  };
+  }
 
   /**
-   * @body - event Object
+   * receiveEvent
    */
-  public addEvent = (req: Request, res: Response): void => {
+  @Post('/')
+  receiveEvent(@Req() request: Request, @Res() response: Response): any {
     myEmitter.emit('event', {
-      id: req.body.id,
+      id: request.body.id,
     });
-    res.send({
+    return {
       msg: 'event created @addEvent function',
-    });
-  };
+    };
+  }
 }

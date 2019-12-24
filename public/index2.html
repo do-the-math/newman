@@ -4,8 +4,9 @@
   <head>
     <script>
       if (!!window.EventSource) {
-        const id = 'id1';
-        var source = new EventSource(`api/v1/notifications/stream/${id}`);
+        const id = 'id2';
+        const url = `http://localhost:3000/api/v1/notifications/stream/${id}`;
+        var source = new EventSource(url);
 
         source.addEventListener(
           'message',

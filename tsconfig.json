@@ -1,6 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "experimentalDecorators": true,
     "removeComments": true,
     "target": "es2018",
     "module": "commonjs",
@@ -10,5 +11,8 @@
     "alwaysStrict": true
   },
   "include": ["server/types/*.*.d.ts", "server/**/*.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules", "**/*.spec.ts"],
+
+  "emitDecoratorMetadata": true,
+  "experimentalDecorators": true
 }
