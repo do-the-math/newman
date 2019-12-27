@@ -1,5 +1,6 @@
 {
   "workbench.tree.indent": 20,
+  "workbench.colorTheme": "Material Theme Palenight",
 
   "files.insertFinalNewline": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
