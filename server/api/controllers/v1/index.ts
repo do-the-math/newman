@@ -1,13 +1,8 @@
 import { Router } from 'express';
-import { AuthController } from './auth/auth.controller';
-import { NotificationController } from './notifications/notifications.controller';
+import { UserController } from './user/user.controller';
 
 const v1Router: Router = Router();
 
-const v1Controllers = [
-  AuthController,
-  NotificationController,
-  // UserController
-];
+const v1Controllers = [UserController];
 
 export { v1Controllers, v1Router };
