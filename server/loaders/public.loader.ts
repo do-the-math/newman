@@ -1,9 +1,12 @@
 import * as express from 'express';
-import { MicroframeworkLoader, MicroframeworkSettings } from 'microframework';
+import {
+  MicroframeworkLoader,
+  MicroframeworkSettings
+} from 'microframework';
 import * as path from 'path';
 
 export const publicLoader: MicroframeworkLoader = (
-  settings: MicroframeworkSettings | undefined,
+  settings: MicroframeworkSettings | undefined
 ) => {
   if (settings) {
     const root = path.normalize(__dirname + '/../..');

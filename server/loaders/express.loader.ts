@@ -8,7 +8,7 @@ import { logBanner, logConsole, logError } from '../utils/log';
 import { v1Controllers, v1Router } from './../api/controllers/v1';
 
 export const expressLoader = (
-  settings: MicroframeworkSettings,
+  settings: MicroframeworkSettings
 ): Promise<void> => {
   const loaderName = 'expressLoader';
 
@@ -27,7 +27,7 @@ export const expressLoader = (
       /* Register controller */
       useExpressServer(app, {
         routePrefix: '/api',
-        controllers: [...v1Controllers],
+        controllers: [...v1Controllers]
       });
 
       /* Start listenting */
