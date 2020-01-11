@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/interface-name-prefix */
 import mongoose = require('mongoose');
 
 export type comparePasswordFunction = (
   candidatePassword: string
 ) => Promise<boolean>;
 
-export interface IAddress {
+export interface Address {
   address1: string;
   address2: string;
   address3: string;
@@ -13,7 +12,7 @@ export interface IAddress {
   country: string;
 }
 
-export interface IUser {
+export interface User {
   _id?: mongoose.Schema.Types.ObjectId;
   email: string;
   password?: string;
@@ -21,7 +20,7 @@ export interface IUser {
 
   firstName: string;
   lastName: string;
-  address: IAddress;
+  address: Address;
 
   isActive: boolean;
   isEmailVerified: boolean;
@@ -31,6 +30,6 @@ export interface IUser {
   comparePassword: comparePasswordFunction;
 }
 
-export interface IUserModel extends IUser, mongoose.Document {
+export interface UserModel extends User, mongoose.Document {
   _id: { type: mongoose.Schema.Types.ObjectId; required: true };
 }

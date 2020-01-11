@@ -9,7 +9,7 @@ import { v1Controllers, v1Router } from './../api/controllers/v1';
 
 export const expressLoader = (
   settings: MicroframeworkSettings
-): Promise<void> => {
+): Promise<void | string> => {
   const loaderName = 'expressLoader';
 
   return new Promise((resolve, reject) => {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
 import bcrypt from 'bcryptjs';
 import mongoose, { Schema } from 'mongoose';
 import { IUserModel } from '../interfaces/user.interface';
@@ -24,8 +23,8 @@ const UserSchema = new Schema(
       required: true
     },
 
-    first_name: String,
-    last_name: String,
+    firstName: String,
+    lastName: String,
     address: {
       address1: String,
       address2: String,
@@ -35,13 +34,13 @@ const UserSchema = new Schema(
     },
 
     // User or Admin can deactivate the user
-    is_active: { type: Boolean, default: true },
+    isActive: { type: Boolean, default: true },
 
     // Verified when user's email is verified
-    is_email_verified: { type: Boolean, default: false },
+    isEmailVerified: { type: Boolean, default: false },
 
     // who created this user
-    created_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   },
   { timestamps: true }
 );
