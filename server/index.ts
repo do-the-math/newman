@@ -1,4 +1,5 @@
 import { bootstrapMicroframework } from 'microframework';
+import { authenticationLoader } from './loaders/authentication.loader';
 import { corsLoader } from './loaders/cors.loader';
 import { expressLoader } from './loaders/express.loader';
 import { initLoader } from './loaders/init.loader';
@@ -16,6 +17,7 @@ bootstrapMicroframework({
     corsLoader,
     publicLoader,
     swaggerLoader,
+    authenticationLoader,
 
     // db loader
     mongooseLoader,
