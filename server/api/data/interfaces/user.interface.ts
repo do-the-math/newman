@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/interface-name-prefix */
 import mongoose = require('mongoose');
 
 export type comparePasswordFunction = (
   candidatePassword: string
 ) => Promise<boolean>;
 
-export interface IAddress {
+export interface Address {
   address1: string;
   address2: string;
   address3: string;
@@ -13,17 +12,17 @@ export interface IAddress {
   country: string;
 }
 
-export type UserDocument = mongoose.Document & {
+export interface UserDocument extends mongoose.Document {
   email: string;
   password?: string;
   role: number;
 
   firstName?: string;
   lastName?: string;
-  address?: IAddress;
+  address?: Address;
 
   isActive: boolean;
   isEmailVerified: boolean;
 
   comparePassword: comparePasswordFunction;
-};
+}

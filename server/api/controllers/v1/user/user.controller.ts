@@ -15,13 +15,22 @@ export default class UserController {
 
     this.userService
       .createUser(authenticatedUser, reqObj)
-      .then((r) =>
-        response.status(httpStatus.CREATED).send({
-          ...r
-        })
+      .then((r: UserDocument) =>
+        response.status(httpStatus.CREATED).send(r)
       )
-      .catch((r) =>
+      .catch((r: UserDocument[]) =>
         response.status(httpStatus.INTERNAL_SERVER_ERROR).json(r)
       );
+  };
+
+  public getAllUsers = (request: Request, response: Response): void => {
+    const authenticatedUser: UserDocument | undefined = request.user;
+
+    this.userService
+      .fetchAllUsers(authenticatedUser)
+      .then((r) => {
+        response.status(httpStatus.OK).send(r);
+      })
+      .catch((r) => response.status(httpStatus.NOT_FOUND).send(r));
   };
 }

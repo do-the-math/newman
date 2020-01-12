@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import mongoose, { Schema } from 'mongoose';
 import { Roles } from '../enums/roles.enum';
+import { UserDocument } from '../interfaces/user.interface';
 
 const UserSchema = new Schema(
   {
@@ -57,6 +58,6 @@ function comparePassword(candidatePassword: string): Promise<boolean> {
 
 UserSchema.methods.comparePassword = comparePassword;
 
-const UserModel = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model<UserDocument>('User', UserSchema);
 
 export default UserModel;

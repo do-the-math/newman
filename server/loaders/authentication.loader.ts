@@ -28,7 +28,9 @@ export const authenticationLoader: MicroframeworkLoader = (
             passwordField: 'password',
             passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
           },
-          (req, email, password, done) => {}
+          (req, email, password, done) => {
+            //
+          }
         )
       );
 

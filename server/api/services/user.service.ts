@@ -18,4 +18,22 @@ export default class UserService {
       }
     });
   }
+
+  public fetchAllUsers(
+    authenticatedUser: UserDocument
+  ): Promise<UserDocument[]> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const user: UserDocument[] = await this.userRepository.fetchAllUsers();
+        if (user == null) {
+          return reject({
+            err: `Please try again later with authorized user`
+          });
+        }
+        resolve(user);
+      } catch (e) {
+        reject(e);
+      }
+    });
+  }
 }

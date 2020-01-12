@@ -15,10 +15,10 @@ export const mongooseLoader = (
         const connection = await mongoose.connect(config.MONGO_DB_HOST, {
           useNewUrlParser: true,
           useUnifiedTopology: true,
-          useCreateIndex: true
+          useCreateIndex: true,
+          useFindAndModify: true
         });
 
-        // TODO: Magic strings like these should be moved to constants
         settings.setData('connection', connection);
         settings.onShutdown(() => connection.disconnect());
 
