@@ -1,27 +1,18 @@
-import {
-  default as User,
-  default as UserSchema
-} from '../schemas/user.schema';
-import { IUser, IUserModel } from '../interfaces/user.interface';
-import { RepositoryBase } from './base/base.repository';
+import { UserDocument } from '../interfaces/user.interface';
+import UserModel from '../schemas/user.schema';
 
-class UserRepository extends RepositoryBase<IUserModel> {
-  constructor() {
-    super(UserSchema);
-  }
-
-  public createUser(userObj: IUser): Promise<IUser> {
+class UserRepository {
+  public createOne(item: UserDocument): Promise<UserDocument> {
     return new Promise(async (resolve, reject) => {
       try {
-        const user = new User(userObj);
-
-        let userCreated = await user.save();
-
-        userCreated = userCreated.toObject();
-        delete userCreated.password;
+        console.log('Asdf');
+        let _user = new UserModel(item);
+        _user = await _user.save();
+        const userCreated = _user.toObject();
 
         resolve(userCreated);
       } catch (e) {
+        console.log(e);
         reject(e);
       }
     });

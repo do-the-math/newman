@@ -1,71 +1,27 @@
-import 'reflect-metadata';
-import { Controller, Get, Post, Req, Res } from 'routing-controllers';
-import { Request, Response } from '../../../../types/express.extensions';
-/**
- * @swagger
- * components:
- *   schemas:
- *    user:
- *        type: object
- *        required:
- *          - email
- *          - role
- *        properties:
- *          email:
- *            type: string
- *          role:
- *            type: number
- *          password:
- *            type: string
- *          isActive:
- *            type: boolean
- *          firstName:
- *            type: string
- *          lastName:
- *            type: number
- *          address:
- *            type: object
- *
- */
+import httpStatus from 'http-status';
+import UserService from '../../../services/user.service';
+import { Request, Response } from './../../../../types/express.extensions';
+import { UserDocument } from '../../../data/interfaces/user.interface';
+export default class UserController {
+  private userService = new UserService();
 
-@Controller(`/v1/users`)
-export class UserController {
-  /**
-   * @swagger
-   * /users:
-   *    post:
-   *     security:
-   *      - JwtTokenAuth: []
-   *     summary: Create User
-   *     description: ''
-   *     consumes:
-   *         - application/json
-   *     tags:
-   *         - Users
-   *     requestBody:
-   *      required: true
-   *      content:
-   *       application/json:
-   *        schema:
-   *          $ref: "#/components/schemas/user"
-   *     responses:
-   *       200:
-   *        description: Created Successfully
-   *       500:
-   *        description: INTERNAL_SERVER_ERROR
-   */
-  @Post('/')
-  createOne(@Req() request: Request, @Res() response: Response): any {
-    return 'This action returns user #';
-  }
+  public createUser = (request: Request, response: Response): void => {
+    const authenticatedUser: UserDocument | undefined = request.user;
 
-  @Get('/')
-  getAll(@Req() request: Request, @Res() response: Response): any {
-    return 'This action returns user #';
-  }
+    const reqObj: UserDocument = {
+      ...request.body,
+      isActive: true
+    };
 
-  @Post('/')
-  getOne(): string {
-    return 'This action returns user #';
-  }
+    this.userService
+      .createUser(authenticatedUser, reqObj)
+      .then((r) =>
+        response.status(httpStatus.CREATED).send({
+          ...r
+        })
+      )
+      .catch((r) =>
+        response.status(httpStatus.INTERNAL_SERVER_ERROR).json(r)
+      );
+  };
 }

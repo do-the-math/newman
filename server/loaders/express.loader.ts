@@ -1,11 +1,9 @@
 import bodyParser from 'body-parser';
 import { Application } from 'express';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
-import 'reflect-metadata';
-import { useExpressServer } from 'routing-controllers';
 import { ErrorWithStatus } from '../types/node.extensions';
 import { logBanner, logConsole, logError } from '../utils/log';
-import { v1Controllers, v1Router } from './../api/controllers/v1';
+import v1Router from './../api/controllers/v1';
 
 export const expressLoader = (
   settings: MicroframeworkSettings
@@ -22,13 +20,7 @@ export const expressLoader = (
       app.use(bodyParser.json());
 
       /* Register Routes */
-      app.use('/', v1Router);
-
-      /* Register controller */
-      useExpressServer(app, {
-        routePrefix: '/api',
-        controllers: [...v1Controllers]
-      });
+      app.use('/api/v1', v1Router);
 
       /* Start listenting */
       app

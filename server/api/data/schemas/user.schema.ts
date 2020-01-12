@@ -1,6 +1,5 @@
 import bcrypt from 'bcryptjs';
 import mongoose, { Schema } from 'mongoose';
-import { IUserModel } from '../interfaces/user.interface';
 
 const UserSchema = new Schema(
   {
@@ -57,4 +56,6 @@ function comparePassword(candidatePassword: string): Promise<boolean> {
 
 UserSchema.methods.comparePassword = comparePassword;
 
-export default mongoose.model<IUserModel>('User', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
+
+export default UserModel;

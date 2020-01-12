@@ -21,5 +21,13 @@ export default {
 
   // LOGGING AND DEBUGGING
   NODE_ENV: process.env.NODE_ENV || 'local',
-  LOG_LEVEL: process.env.LOG_LEVEL || 'debug'
+  LOG_LEVEL: process.env.LOG_LEVEL || 'debug',
+
+  // MONGO DATABASES
+  MONGO_DB_DIALECT: process.env.DB_DIALECT || 'mongodb+srv',
+  MONGO_DB_HOST: process.env.DB_HOST,
+  MONGO_DB_PORT: process.env.DB_PORT || '27017',
+  MONGO_DB_NAME: process.env.DB_NAME || 'elevate-iq-dev',
+  MONGO_DB_USER: process.env.DB_USER || 'elevate-iq-app',
+  MONGO_DB_PASSWORD: process.env.DB_PASSWORD || 'JUysC66dNI3OiLPT'
 };

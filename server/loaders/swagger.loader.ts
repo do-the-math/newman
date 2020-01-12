@@ -7,7 +7,7 @@ import Swaggerjsdoc from 'swagger-jsdoc';
 import Swaggeruiexpress from 'swagger-ui-express';
 import config from '../config/config';
 import { Request, Response, Next } from './../types/express.extensions';
-import { logConsole, logBanner } from '../utils/log';
+import { logConsole } from '../utils/log';
 
 export const swaggerLoader: MicroframeworkLoader = (
   settings: MicroframeworkSettings | undefined
@@ -16,13 +16,15 @@ export const swaggerLoader: MicroframeworkLoader = (
 
   return new Promise((resolve, reject) => {
     if (settings && config.SWAGGER_ENABLED) {
-      const expressApp = settings.getData('express_app');
+      const app = settings.getData('express_app');
+
       // api routes
+      const envPath = config.NODE_ENV == 'local' ? 'server' : 'dist';
       const routesPath = [
-        `./${
-          config.NODE_ENV == 'local' ? 'server' : 'dist'
-        }/api/controllers/v1/*/*.controller.ts`
+        `./${envPath}/api/controllers/v1/*/*.route.*`,
+        `./${envPath}/api/controllers/v1/*/*.swagger.*`
       ];
+
       const options = {
         swaggerDefinition: {
           openapi: '3.0.1',
@@ -33,9 +35,7 @@ export const swaggerLoader: MicroframeworkLoader = (
             license: {
               name: 'Aman Nidhi',
               url: 'https://www.aman.com'
-            },
-            type: 'application/json',
-            host: 'localhost:3000'
+            }
           },
           basePath: '/api/v1',
           servers: [
@@ -55,8 +55,10 @@ export const swaggerLoader: MicroframeworkLoader = (
         },
         apis: routesPath
       };
+
       const swaggerdocs = Swaggerjsdoc(options);
-      expressApp.use(
+
+      app.use(
         config.SWAGGER_ROUTE,
         // do not ask password when in local
         config.NODE_ENV === 'local'
@@ -72,13 +74,10 @@ export const swaggerLoader: MicroframeworkLoader = (
       );
 
       // swagger in the route
-      expressApp.get(
-        config.SWAGGER_SPEC,
-        (req: Request, res: Response) => {
-          res.setHeader('Content-Type', 'application/json');
-          res.send(JSON.stringify(swaggerdocs, null, 1));
-        }
-      );
+      app.get(config.SWAGGER_SPEC, (req: Request, res: Response) => {
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify(swaggerdocs, null, 1));
+      });
 
       logConsole(`--- ${loaderName} loaded`);
       resolve();

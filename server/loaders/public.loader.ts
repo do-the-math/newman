@@ -10,8 +10,8 @@ export const publicLoader: MicroframeworkLoader = (
 ) => {
   if (settings) {
     const root = path.normalize(__dirname + '/../..');
-    const expressApp = settings.getData('express_app');
+    const app = settings.getData('express_app');
 
-    expressApp.use(express.static(`${root}/public`));
+    app.use(express.static(`${root}/public`));
   }
 };
