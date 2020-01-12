@@ -19,7 +19,10 @@ class UserRepository {
   public fetchAllUsers(): Promise<UserDocument[]> {
     return new Promise(async (resolve, reject) => {
       try {
-        const _users: UserDocument[] = await UserModel.find({});
+        const _users: UserDocument[] = await UserModel.find(
+          {},
+          { password: 0 }
+        );
 
         resolve(_users);
       } catch (e) {

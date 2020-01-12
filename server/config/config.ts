@@ -4,7 +4,7 @@ dotenv.config();
 export default {
   // APP
   APP_NAME: process.env.APP || 'Newman',
-  PORT: process.env.PORT,
+  PORT: process.env.PORT || '3000',
   APP_URL: process.env.APP_URL || `http://localhost:${process.env.PORT}`,
   REQUEST_LIMIT: process.env.REQUEST_LIMIT || '100kb',
   APP_BANNER: process.env.APP_BANNER || false,
