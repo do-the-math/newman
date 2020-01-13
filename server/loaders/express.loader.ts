@@ -1,15 +1,14 @@
 import bodyParser from 'body-parser';
 import { Application } from 'express';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
-import 'reflect-metadata';
-import { useExpressServer } from 'routing-controllers';
 import { ErrorWithStatus } from '../types/node.extensions';
 import { logBanner, logConsole, logError } from '../utils/log';
-import { v1Controllers, v1Router } from './../api/controllers/v1';
+import v1Router from './../api/controllers/v1';
+import { errors } from 'celebrate';
 
 export const expressLoader = (
-  settings: MicroframeworkSettings,
-): Promise<void> => {
+  settings: MicroframeworkSettings
+): Promise<void | string> => {
   const loaderName = 'expressLoader';
 
   return new Promise((resolve, reject) => {
@@ -22,13 +21,9 @@ export const expressLoader = (
       app.use(bodyParser.json());
 
       /* Register Routes */
-      app.use('/', v1Router);
+      app.use('/api/v1', v1Router);
 
-      /* Register controller */
-      useExpressServer(app, {
-        routePrefix: '/api',
-        controllers: [...v1Controllers],
-      });
+      app.use(errors());
 
       /* Start listenting */
       app

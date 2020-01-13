@@ -4,7 +4,7 @@ import { logConsole, logError } from '../utils/log';
 import express, { Application } from 'express';
 
 export const initLoader = (
-  settings: MicroframeworkSettings,
+  settings: MicroframeworkSettings
 ): Promise<void> => {
   const loaderName = 'initLoader';
 
@@ -12,7 +12,7 @@ export const initLoader = (
     try {
       const app: Application = express();
       const port: number = parseInt(config.PORT, 10);
-      const appName: string = config.APP;
+      const appName: string = config.APP_NAME;
 
       settings.setData('express_app', app);
       settings.setData('port', port);

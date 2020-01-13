@@ -1,13 +1,8 @@
 import { Router } from 'express';
-import { AuthController } from './auth/auth.controller';
-import { NotificationController } from './notifications/notifications.controller';
+import userRouter from './user/users.route';
 
-const v1Router: Router = Router();
+const router: Router = Router();
 
-const v1Controllers = [
-  AuthController,
-  NotificationController,
-  // UserController
-];
+router.use('/users', userRouter);
 
-export { v1Controllers, v1Router };
+export default router;

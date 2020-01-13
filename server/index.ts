@@ -1,25 +1,33 @@
 import { bootstrapMicroframework } from 'microframework';
-import { expressLoader } from './loaders/express.loader';
+import { authenticationLoader } from './loaders/authentication.loader';
 import { corsLoader } from './loaders/cors.loader';
+import { expressLoader } from './loaders/express.loader';
 import { initLoader } from './loaders/init.loader';
+import { mongooseLoader } from './loaders/mongoose.loader';
 import { publicLoader } from './loaders/public.loader';
+import { swaggerLoader } from './loaders/swagger.loader';
 import { logError, logInfo } from './utils/log';
 
 bootstrapMicroframework({
   config: {
-    showBootstrapTime: true,
+    showBootstrapTime: true
   },
   loaders: [
     initLoader,
     corsLoader,
     publicLoader,
+    swaggerLoader,
+    authenticationLoader,
 
-    // Express Loaded at last
-    expressLoader,
-  ],
+    // db loader
+    mongooseLoader,
+
+    // start server after all middlewares
+    expressLoader
+  ]
 })
-  .then(() => {
-    logInfo('Application is Up and Running');
+  .then((e) => {
+    logInfo('Start Development');
   })
   .catch((err) => {
     logError('application erry', err);
