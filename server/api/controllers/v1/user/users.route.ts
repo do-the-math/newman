@@ -1,11 +1,12 @@
 import { Router } from 'express';
 // import passport from 'passport';
 import UserController from './user.controller';
-import { createValidator } from 'express-joi-validation';
-import { userIdParam } from './users.validator';
+import { idParam, userCreateSchema } from './users.validator';
+
+import { celebrate } from 'celebrate';
+
 const userRouter: Router = Router();
 const userController = new UserController();
-const validator = createValidator();
 
 /**
  * @swagger
@@ -31,13 +32,14 @@ const validator = createValidator();
  *            application/json:
  *              schema:
  *                $ref: "#/components/schemas/User"
+ *       '400':
+ *          description: Bad Request
  *       '500':
  *          description: Server Error
  */
 userRouter.post(
   '/',
-  // passport.authenticate('jwt', { session: false }),
-  // validator.body(userCreateRequest),
+  celebrate(userCreateSchema, { abortEarly: false }),
   userController.createUser
 );
 
@@ -59,11 +61,15 @@ userRouter.post(
  *              schema:
  *                $ref: "#/components/schemas/UserArray"
  *       '404':
- *          description: Error Not found
+ *          description: Not found
+ *       '400':
+ *          description: Bad Request
+ *       '500':
+ *          description: Server Error
  */
 userRouter.get(
   '/',
-  // validator.params(userIdParam),
+  // passport.authenticate('jwt', { session: false }),
   userController.getAllUsers
 );
 

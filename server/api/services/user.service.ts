@@ -8,7 +8,10 @@ export default class UserService {
     this.userRepository = new UserRepository();
   }
 
-  public createUser(authentictedUser, reqObj): Promise<UserDocument> {
+  public createUser = (
+    authentictedUser: UserDocument,
+    reqObj: UserDocument
+  ): Promise<UserDocument> => {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await this.userRepository.createOne(reqObj);
@@ -17,11 +20,11 @@ export default class UserService {
         reject(e);
       }
     });
-  }
+  };
 
-  public fetchAllUsers(
+  public fetchAllUsers = (
     authenticatedUser: UserDocument
-  ): Promise<UserDocument[]> {
+  ): Promise<UserDocument[]> => {
     return new Promise(async (resolve, reject) => {
       try {
         const user: UserDocument[] = await this.userRepository.fetchAllUsers();
@@ -35,5 +38,5 @@ export default class UserService {
         reject(e);
       }
     });
-  }
+  };
 }

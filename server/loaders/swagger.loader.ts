@@ -6,7 +6,11 @@ import {
 import Swaggerjsdoc from 'swagger-jsdoc';
 import Swaggeruiexpress from 'swagger-ui-express';
 import config from '../config/config';
-import { Request, Response, Next } from './../types/express.extensions';
+import {
+  Request,
+  Response,
+  NextFunction
+} from './../types/express.extensions';
 import { logConsole } from '../utils/log';
 
 export const swaggerLoader: MicroframeworkLoader = (
@@ -68,7 +72,7 @@ export const swaggerLoader: MicroframeworkLoader = (
               },
               challenge: true
             })
-          : (req: Request, res: Response, next: Next) => next(),
+          : (req: Request, res: Response, next: NextFunction) => next(),
         Swaggeruiexpress.serve,
         Swaggeruiexpress.setup(swaggerdocs)
       );

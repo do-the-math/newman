@@ -4,6 +4,7 @@ import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
 import { ErrorWithStatus } from '../types/node.extensions';
 import { logBanner, logConsole, logError } from '../utils/log';
 import v1Router from './../api/controllers/v1';
+import { errors } from 'celebrate';
 
 export const expressLoader = (
   settings: MicroframeworkSettings
@@ -21,6 +22,8 @@ export const expressLoader = (
 
       /* Register Routes */
       app.use('/api/v1', v1Router);
+
+      app.use(errors());
 
       /* Start listenting */
       app

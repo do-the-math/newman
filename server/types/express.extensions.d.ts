@@ -4,6 +4,6 @@ interface Request extends express.Request {
   user?: UserDocument;
 }
 type Response = express.Response;
-type Next = express.NextFunction;
+type NextFunction = express.NextFunction;
 
-export { Request, Response, Next };
+export { Request, Response, NextFunction };
