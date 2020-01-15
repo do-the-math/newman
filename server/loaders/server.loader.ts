@@ -3,13 +3,13 @@ import { Application } from 'express';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
 import { ErrorWithStatus } from '../types/node.extensions';
 import { logBanner, logConsole, logError } from '../utils/log';
-import v1Router from './../api/controllers/v1';
+import v1Router from '../api/controllers/v1';
 import { boomify, isBoom } from '@hapi/boom';
 
-export const expressLoader = (
+export const serverLoader = (
   settings: MicroframeworkSettings
 ): Promise<void | string> => {
-  const loaderName = 'expressLoader';
+  const loaderName = 'sererLoader';
 
   return new Promise((resolve, reject) => {
     try {
