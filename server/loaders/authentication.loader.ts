@@ -3,9 +3,8 @@ import {
   MicroframeworkSettings
 } from 'microframework';
 import passport from 'passport';
-import passportJWT from 'passport-jwt';
 import passportLocal from 'passport-local';
-// import { Request, Response, Next } from './../types/express.extensions';
+// import { NextFunction, Request, Response } from 'express';
 import { logConsole } from '../utils/log';
 
 const LocalStrategy = passportLocal.Strategy;

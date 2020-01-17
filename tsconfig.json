@@ -10,7 +10,8 @@
     "outDir": "dist",
     "alwaysStrict": true
   },
-  "include": ["server/types/*.*.d.ts", "server/**/*.ts"],
+  "typeRoots": ["./node_modules/@types", "./server/types"],
+  "include": ["server/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"],
 
   "emitDecoratorMetadata": true,

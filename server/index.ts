@@ -26,9 +26,9 @@ bootstrapMicroframework({
     serverLoader
   ]
 })
-  .then((e) => {
+  .then((data) => {
     logInfo('Start Development');
   })
-  .catch((err) => {
-    logError('application erry', err);
+  .catch((error) => {
+    logError('application erry', error);
   });

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 // import passport from 'passport';
 import UserController from './user.controller';
-import { idParam, userCreateSchema } from './users.validator';
+import { idParamSchema, userCreateSchema } from './users.validator';
 
 import { celebrate } from 'celebrate';
 

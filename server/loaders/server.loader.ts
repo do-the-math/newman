@@ -1,15 +1,15 @@
+import { boomify, isBoom } from '@hapi/boom';
 import bodyParser from 'body-parser';
 import { Application } from 'express';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
-import { ErrorWithStatus } from '../types/node.extensions';
-import { logBanner, logConsole, logError } from '../utils/log';
 import v1Router from '../api/controllers/v1';
-import { boomify, isBoom } from '@hapi/boom';
+import { ErrorWithStatus } from '../types/node';
+import { logBanner, logConsole, logError } from '../utils/log';
 
 export const serverLoader = (
   settings: MicroframeworkSettings
 ): Promise<void | string> => {
-  const loaderName = 'sererLoader';
+  const loaderName = 'serverLoader';
 
   return new Promise((resolve, reject) => {
     try {
@@ -33,12 +33,13 @@ export const serverLoader = (
 
           boomed = boomify(err, errorResponse);
         } else {
+          console.log(err);
           boomed = err;
         }
 
         return res
           .status(boomed.output.statusCode)
-          .json({ ...boomed.output.payload, ...boomed.data });
+          .json(Object.assign(boomed.output.payload, boomed.data));
       });
 
       /* Start listenting */

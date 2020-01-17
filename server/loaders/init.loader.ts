@@ -21,8 +21,8 @@ export const initLoader = (
       logConsole(`--- ${loaderName} loaded`);
 
       resolve();
-    } catch (err) {
-      logError(`--- initLoader loaded error`, err);
+    } catch (error) {
+      logError(`--- initLoader loaded error`, error);
       reject();
     }
   });

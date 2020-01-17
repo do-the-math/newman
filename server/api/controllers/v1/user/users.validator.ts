@@ -1,7 +1,7 @@
 import { Roles } from './../../../data/enums/roles.enum';
-import { celebrate, Joi, errors, Segments } from 'celebrate';
+import { Joi, Segments } from 'celebrate';
 
-const idParam = {
+const idParamSchema = {
   [Segments.PARAMS]: Joi.object().keys({
     id: Joi.string().required()
   })
@@ -19,4 +19,4 @@ const userCreateSchema = {
   })
 };
 
-export { idParam, userCreateSchema };
+export { idParamSchema, userCreateSchema };
