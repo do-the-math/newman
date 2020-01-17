@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from 'express';
 import BasicAuth from 'express-basic-auth';
 import {
   MicroframeworkLoader,
@@ -6,11 +7,6 @@ import {
 import Swaggerjsdoc from 'swagger-jsdoc';
 import Swaggeruiexpress from 'swagger-ui-express';
 import config from '../config/config';
-import {
-  Request,
-  Response,
-  NextFunction
-} from './../types/express.extensions';
 import { logConsole } from '../utils/log';
 
 export const swaggerLoader: MicroframeworkLoader = (

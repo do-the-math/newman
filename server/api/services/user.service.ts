@@ -1,4 +1,4 @@
-import { UserDocument } from '../data/interfaces/user.interface';
+import { IUser } from '../data/interfaces/user.interface';
 import UserRepository = require('../data/repositories/user.repository');
 
 export default class UserService {
@@ -9,33 +9,31 @@ export default class UserService {
   }
 
   public createUser = (
-    authentictedUser: UserDocument,
-    reqObj: UserDocument
-  ): Promise<UserDocument> => {
+    authentictedUser: IUser,
+    reqObj: IUser
+  ): Promise<IUser> => {
     return new Promise(async (resolve, reject) => {
       try {
         const user = await this.userRepository.createOne(reqObj);
         resolve(user);
-      } catch (e) {
-        reject(e);
+      } catch (error) {
+        reject(error);
       }
     });
   };
 
-  public fetchAllUsers = (
-    authenticatedUser: UserDocument
-  ): Promise<UserDocument[]> => {
+  public fetchAllUsers = (authenticatedUser: IUser): Promise<IUser[]> => {
     return new Promise(async (resolve, reject) => {
       try {
-        const user: UserDocument[] = await this.userRepository.fetchAllUsers();
-        if (user == null) {
+        const users: IUser[] = await this.userRepository.fetchAllUsers();
+        if (users == null || users.length === 0) {
           return reject({
             err: `Please try again later with authorized user`
           });
         }
-        resolve(user);
-      } catch (e) {
-        reject(e);
+        resolve(users);
+      } catch (error) {
+        reject(error);
       }
     });
   };

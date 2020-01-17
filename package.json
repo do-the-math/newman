@@ -11,7 +11,7 @@
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
     "watch": "watch 'yarn lint'",
     "dev": "nodemon ./server/index.ts",
-    "dev:debug": "nodemon --inspect ./server/index.ts"
+    "debug": "nodemon --inspect ./server/index.ts"
   },
   "dependencies": {
     "@hapi/boom": "^9.0.0",

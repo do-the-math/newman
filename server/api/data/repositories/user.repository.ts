@@ -1,8 +1,9 @@
-import { UserDocument } from '../interfaces/user.interface';
+import { IUser } from '../interfaces/user.interface';
 import UserModel from '../schemas/user.schema';
+import { DocumentQuery } from 'mongoose';
 
 class UserRepository {
-  public createOne(item: UserDocument): Promise<UserDocument> {
+  public createOne(item: IUser): Promise<IUser> {
     return new Promise(async (resolve, reject) => {
       try {
         let _user = new UserModel(item);
@@ -16,13 +17,15 @@ class UserRepository {
     });
   }
 
-  public fetchAllUsers(): Promise<UserDocument[]> {
+  public fetchAllUsers(): Promise<IUser[]> {
     return new Promise(async (resolve, reject) => {
       try {
-        const _users: UserDocument[] = await UserModel.find(
+        throw new Error('my name is aman');
+
+        const _users: IUser[] = await UserModel.find(
           {},
           { password: 0 }
-        );
+        ).lean();
 
         resolve(_users);
       } catch (e) {

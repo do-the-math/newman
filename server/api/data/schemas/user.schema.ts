@@ -1,19 +1,18 @@
 import bcrypt from 'bcryptjs';
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 import { Roles } from '../enums/roles.enum';
-import { UserDocument } from '../interfaces/user.interface';
+import { IUser } from '../interfaces/user.interface';
 
 const UserSchema = new Schema(
   {
     email: {
       type: String,
-      required: [true, 'Email is Required'],
+      required: [true, 'Email is a required field'],
       unique: true,
       trim: true,
       lowercase: true,
       index: true
     },
-
     password: {
       type: String,
       minlength: 4
@@ -26,6 +25,7 @@ const UserSchema = new Schema(
 
     firstName: String,
     lastName: String,
+    phoneNumber: String,
     address: {
       address1: String,
       address2: String,
@@ -34,13 +34,8 @@ const UserSchema = new Schema(
       country: String
     },
 
-    // User or Admin can deactivate the user
     isActive: { type: Boolean, default: true },
-
-    // Verified when user's email is verified
     isEmailVerified: { type: Boolean, default: false },
-
-    // who created this user
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   },
   { timestamps: true }
@@ -51,13 +46,42 @@ UserSchema.virtual('fullName').get(function() {
   return `${this.profile.firstName}  ${this.profile.lasName}`;
 });
 
-// password compare function
-function comparePassword(candidatePassword: string): Promise<boolean> {
-  return bcrypt.compare(candidatePassword, this.password);
-}
+/**
+ * Methods
+ */
+UserSchema.methods = {
+  /**
+   * Compare Password - check if the passwords are the same
+   *
+   * @param {String} plainText
+   * @return {Boolean}
+   * @api public
+   */
+  comparePassword: (candidatePassword: string): Promise<boolean> => {
+    return bcrypt.compare(candidatePassword, this.password);
+  }
+};
 
-UserSchema.methods.comparePassword = comparePassword;
+/**
+ * Statics
+ */
 
-const UserModel = mongoose.model<UserDocument>('User', UserSchema);
+UserSchema.statics = {
+  /**
+   * Load
+   *
+   * @param {Object} options
+   * @param {Function} cb
+   * @api private
+   */
+  load: function(options, cb) {
+    options.select = options.select || 'name username';
+    return this.findOne(options.criteria)
+      .select(options.select)
+      .exec(cb);
+  }
+};
+
+const UserModel = mongoose.model<IUser & Document>('User', UserSchema);
 
 export default UserModel;

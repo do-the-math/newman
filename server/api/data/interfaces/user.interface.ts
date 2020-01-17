@@ -1,5 +1,3 @@
-import mongoose = require('mongoose');
-
 export type comparePasswordFunction = (
   candidatePassword: string
 ) => Promise<boolean>;
@@ -12,7 +10,8 @@ export interface Address {
   country: string;
 }
 
-export interface UserDocument extends mongoose.Document {
+export interface IUser {
+  _id?: string;
   email: string;
   password?: string;
   role: number;
@@ -23,6 +22,4 @@ export interface UserDocument extends mongoose.Document {
 
   isActive: boolean;
   isEmailVerified: boolean;
-
-  comparePassword: comparePasswordFunction;
 }
