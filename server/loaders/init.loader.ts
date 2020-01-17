@@ -1,7 +1,11 @@
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import express, { Application } from 'express';
+import helmet from 'helmet';
 import { MicroframeworkSettings } from 'microframework';
+import passport from 'passport';
 import config from '../config/config';
 import { logConsole, logError } from '../utils/log';
-import express, { Application } from 'express';
 
 export const initLoader = (
   settings: MicroframeworkSettings
@@ -13,10 +17,18 @@ export const initLoader = (
       const app: Application = express();
       const port: number = parseInt(config.PORT, 10);
       const appName: string = config.APP_NAME;
+      const isLocal: boolean = config.NODE_ENV === 'local';
+
+      app.use(compression());
+      app.use(bodyParser.urlencoded({ extended: true }));
+      app.use(bodyParser.json());
+      app.use(passport.initialize());
+      app.use(helmet());
 
       settings.setData('express_app', app);
       settings.setData('port', port);
       settings.setData('appName', appName);
+      settings.setData('isLocal', isLocal);
 
       logConsole(`--- ${loaderName} loaded`);
 

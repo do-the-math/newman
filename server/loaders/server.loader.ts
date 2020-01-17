@@ -1,5 +1,4 @@
 import { boomify, isBoom } from '@hapi/boom';
-import bodyParser from 'body-parser';
 import { Application } from 'express';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
 import v1Router from '../api/controllers/v1';
@@ -17,9 +16,6 @@ export const serverLoader = (
       const app: Application = settings.getData('express_app');
       const port: number = settings.getData('port');
 
-      app.use(bodyParser.urlencoded({ extended: true }));
-      app.use(bodyParser.json());
-
       /* Register Routes */
       app.use('/api/v1', v1Router);
 
@@ -33,7 +29,6 @@ export const serverLoader = (
 
           boomed = boomify(err, errorResponse);
         } else {
-          console.log(err);
           boomed = err;
         }
 
