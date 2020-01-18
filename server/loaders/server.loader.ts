@@ -1,5 +1,4 @@
 import { boomify, isBoom } from '@hapi/boom';
-import bodyParser from 'body-parser';
 import { Application } from 'express';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
 import v1Router from '../api/controllers/v1';

@@ -18,6 +18,7 @@ export const initLoader = (
       const port: number = parseInt(config.PORT, 10);
       const appName: string = config.APP_NAME;
       const isLocal: boolean = config.NODE_ENV === 'local';
+      const isDev: boolean = config.NODE_ENV === 'development';
 
       app.use(compression());
       app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +30,7 @@ export const initLoader = (
       settings.setData('port', port);
       settings.setData('appName', appName);
       settings.setData('isLocal', isLocal);
+      settings.setData('isDev', isDev);
 
       logConsole(`--- ${loaderName} loaded`);
 

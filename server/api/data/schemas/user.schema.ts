@@ -20,6 +20,7 @@ const UserSchema = new Schema(
     },
     role: {
       type: Number,
+      enum: [Roles.CLIENT, Roles.ADMIN],
       default: Roles.CLIENT,
       required: true
     },
