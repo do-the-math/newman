@@ -84,6 +84,9 @@ UserSchema.statics = {
   }
 };
 
-const UserModel = mongoose.model<IUser & Document>('User', UserSchema);
+const UserModel = mongoose.model<IUser & Document>(
+  'UserModel',
+  UserSchema
+);
 
 export default UserModel;
