@@ -17,7 +17,6 @@ bootstrapMicroframework({
     corsLoader,
     publicLoader,
     swaggerLoader,
-    authenticationLoader,
 
     // DB Loader
     mongooseLoader,

@@ -31,5 +31,13 @@ export default {
   MONGO_DB_PORT: process.env.DB_PORT || '27017',
   MONGO_DB_NAME: process.env.DB_NAME || 'elevate-iq-dev',
   MONGO_DB_USER: process.env.DB_USER || 'elevate-iq-app',
-  MONGO_DB_PASSWORD: process.env.DB_PASSWORD || 'JUysC66dNI3OiLPT'
+  MONGO_DB_PASSWORD: process.env.DB_PASSWORD || 'JUysC66dNI3OiLPT',
+
+  // CORS
+  WHITE_LIST_URL: [
+    'http://localhost:4200',
+    'http://127.0.0.1:4200',
+    'http://127.0.0.1:3000',
+    'http://localhost:3000'
+  ]
 };

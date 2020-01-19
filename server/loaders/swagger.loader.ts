@@ -17,9 +17,9 @@ export const swaggerLoader: MicroframeworkLoader = (
   return new Promise((resolve, reject) => {
     if (settings && config.SWAGGER_ENABLED) {
       const app = settings.getData('express_app');
-
+      const isLocal = settings.getData('isLocal');
       // api routes
-      const envPath = config.NODE_ENV == 'local' ? 'server' : 'dist';
+      const envPath = isLocal ? 'server' : 'dist';
       const routesPath = [
         `./${envPath}/api/controllers/v1/*/*.route.*`,
         `./${envPath}/api/controllers/v1/*/*.swagger.*`

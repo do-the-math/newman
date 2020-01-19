@@ -15,10 +15,12 @@ const UserSchema = new Schema(
     },
     password: {
       type: String,
-      minlength: 4
+      minlength: [6, 'Password need to be longer!'],
+      trim: true
     },
     role: {
       type: Number,
+      enum: [Roles.CLIENT, Roles.ADMIN],
       default: Roles.CLIENT,
       required: true
     },
@@ -82,6 +84,9 @@ UserSchema.statics = {
   }
 };
 
-const UserModel = mongoose.model<IUser & Document>('User', UserSchema);
+const UserModel = mongoose.model<IUser & Document>(
+  'UserModel',
+  UserSchema
+);
 
 export default UserModel;

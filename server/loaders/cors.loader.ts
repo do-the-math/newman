@@ -1,6 +1,7 @@
 import cors from 'cors';
 import { MicroframeworkSettings } from 'microframework';
 import { logConsole, logError } from '../utils/log';
+import config from '../config/config';
 
 export const corsLoader = (
   settings: MicroframeworkSettings
@@ -11,12 +12,7 @@ export const corsLoader = (
     try {
       const app = settings.getData('express_app');
 
-      // const whitelist = [
-      //   'http://localhost:4200',
-      //   'http://127.0.0.1:4200',
-      //   'http://127.0.0.1:3000',
-      //   'http://localhost:3000'
-      // ];
+      // const whitelist = config.WHITE_LIST_URL;
 
       const corsOptions = {
         origin: (origin, callback) => {

@@ -23,7 +23,7 @@
         "allowTypedFunctionExpressions": true
       }
     ],
-    "@typescript-eslint/no-unused-vars": "always"
+    "@typescript-eslint/no-unused-vars": 0
   },
   "ignorePatterns": ["dist/", "node_modules/"]
 }
