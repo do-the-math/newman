@@ -1,9 +1,8 @@
+import { celebrate } from 'celebrate';
 import { Router } from 'express';
 // import passport from 'passport';
 import UserController from './user.controller';
-import { idParamSchema, userCreateSchema } from './users.validator';
-
-import { celebrate } from 'celebrate';
+import { userCreateReqSchema } from './users.validator';
 
 const userRouter: Router = Router();
 const userController = new UserController();
@@ -39,7 +38,9 @@ const userController = new UserController();
  */
 userRouter.post(
   '/',
-  celebrate(userCreateSchema, { abortEarly: false }),
+  celebrate(userCreateReqSchema, {
+    abortEarly: false
+  }),
   userController.createUser
 );
 

@@ -1,13 +1,13 @@
 import { Roles } from './../../../data/enums/roles.enum';
 import { Joi, Segments } from 'celebrate';
 
-const idParamSchema = {
+const idParamReqSchema = {
   [Segments.PARAMS]: Joi.object().keys({
     id: Joi.string().required()
   })
 };
 
-const userCreateSchema = {
+const userCreateReqSchema = {
   [Segments.BODY]: Joi.object().keys({
     email: Joi.string()
       .label('a Name')
@@ -19,4 +19,4 @@ const userCreateSchema = {
   })
 };
 
-export { idParamSchema, userCreateSchema };
+export { idParamReqSchema, userCreateReqSchema };
