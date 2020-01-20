@@ -1,4 +1,5 @@
 import { boomify, isBoom } from '@hapi/boom';
+import { errors } from 'celebrate';
 import { Application } from 'express';
 import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
 import v1Router from '../api/controllers/v1';
@@ -19,7 +20,9 @@ export const serverLoader = (
       /* Register Routes */
       app.use('/api/v1', v1Router);
 
-      app.use((err, req, res, next) => {
+      /* After routes */
+      app.use(errors());
+      app.use((err: any, req, res, next) => {
         let boomed = null;
         if (!isBoom(err)) {
           const errorResponse = {

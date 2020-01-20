@@ -1,7 +1,7 @@
 import cors from 'cors';
 import { MicroframeworkSettings } from 'microframework';
-import { logConsole, logError } from '../utils/log';
 import config from '../config/config';
+import { logConsole, logError } from '../utils/log';
 
 export const corsLoader = (
   settings: MicroframeworkSettings
@@ -12,7 +12,7 @@ export const corsLoader = (
     try {
       const app = settings.getData('express_app');
 
-      // const whitelist = config.WHITE_LIST_URL;
+      const whitelist = config.WHITE_LIST_URL;
 
       const corsOptions = {
         origin: (origin, callback) => {

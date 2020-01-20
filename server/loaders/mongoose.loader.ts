@@ -10,21 +10,19 @@ export const mongooseLoader = (
 
   return new Promise(async (resolve, reject) => {
     try {
-      if (settings) {
-        mongoose.set('useFindAndModify', false);
-        const connection = await mongoose.connect(config.MONGO_DB_HOST, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-          useCreateIndex: true,
-          useFindAndModify: true
-        });
+      mongoose.set('useFindAndModify', false);
+      const connection = await mongoose.connect(config.MONGO_DB_HOST, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: true
+      });
 
-        settings.setData('connection', connection);
-        settings.onShutdown(() => connection.disconnect());
+      settings.setData('connection', connection);
+      settings.onShutdown(() => connection.disconnect());
 
-        logConsole(`--- ${loaderName} loaded`);
-        resolve();
-      }
+      logConsole(`--- ${loaderName} loaded`);
+      resolve();
     } catch (e) {
       logError(`--- ${loaderName} error`, e);
       reject();

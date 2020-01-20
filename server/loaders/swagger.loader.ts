@@ -15,72 +15,71 @@ export const swaggerLoader: MicroframeworkLoader = (
   const loaderName = 'swaggerLoader';
 
   return new Promise((resolve, reject) => {
-    if (settings && config.SWAGGER_ENABLED) {
-      const app = settings.getData('express_app');
-      const isLocal = settings.getData('isLocal');
-      // api routes
-      const envPath = isLocal ? 'server' : 'dist';
-      const routesPath = [
-        `./${envPath}/api/controllers/v1/*/*.route.*`,
-        `./${envPath}/api/controllers/v1/*/*.swagger.*`
-      ];
+    const app = settings.getData('express_app');
+    const isLocal = settings.getData('isLocal');
 
-      const options = {
-        swaggerDefinition: {
-          openapi: '3.0.1',
-          info: {
-            title: config.APP_NAME,
-            version: '1.0.0',
-            description: 'Newman API Server Documentation',
-            license: {
-              name: 'Aman Nidhi',
-              url: 'https://www.aman.com'
-            }
-          },
-          basePath: '/api/v1',
-          servers: [
-            {
-              url: config.ROUTE_URL_V1,
-              description: 'v1'
-            }
-          ],
-          components: {
-            securitySchemes: {
-              JwtTokenAuth: {
-                type: 'http',
-                scheme: 'bearer'
-              }
-            }
+    // path for api specs
+    const envPath = isLocal ? 'server' : 'dist';
+    const routesPath = [
+      `./${envPath}/api/controllers/v1/*/*.route.*`,
+      `./${envPath}/api/controllers/v1/*/*.swagger.*`
+    ];
+
+    const options = {
+      swaggerDefinition: {
+        openapi: '3.0.1',
+        info: {
+          title: config.APP_NAME,
+          version: '1.0.0',
+          description: 'Newman API Server Documentation',
+          license: {
+            name: 'Aman Nidhi',
+            url: 'https://www.aman.com'
           }
         },
-        apis: routesPath
-      };
+        basePath: '/api/v1',
+        servers: [
+          {
+            url: config.ROUTE_URL_V1,
+            description: 'v1'
+          }
+        ],
+        components: {
+          securitySchemes: {
+            JwtTokenAuth: {
+              type: 'http',
+              scheme: 'bearer'
+            }
+          }
+        }
+      },
+      apis: routesPath
+    };
 
-      const swaggerdocs = Swaggerjsdoc(options);
+    const swaggerdocs = Swaggerjsdoc(options);
 
-      app.use(
-        config.SWAGGER_ROUTE,
-        // do not ask password when in local
-        config.NODE_ENV === 'local'
-          ? BasicAuth({
-              users: {
-                [`${config.SWAGGER_USERNAME}`]: config.SWAGGER_PASSWORD
-              },
-              challenge: true
-            })
-          : (req: Request, res: Response, next: NextFunction) => next(),
-        Swaggeruiexpress.serve,
-        Swaggeruiexpress.setup(swaggerdocs)
-      );
+    app.use(
+      config.SWAGGER_ROUTE,
+      // do not ask password when in local
+      config.NODE_ENV === 'local'
+        ? BasicAuth({
+            users: {
+              [`${config.SWAGGER_USERNAME}`]: config.SWAGGER_PASSWORD
+            },
+            challenge: true
+          })
+        : (req: Request, res: Response, next: NextFunction) => next(),
+      Swaggeruiexpress.serve,
+      Swaggeruiexpress.setup(swaggerdocs)
+    );
 
-      // swagger in the route
-      app.get(config.SWAGGER_SPEC, (req: Request, res: Response) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify(swaggerdocs, null, 1));
-      });
+    // swagger in the route
+    app.get(config.SWAGGER_SPEC, (req: Request, res: Response) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(swaggerdocs, null, 1));
+    });
 
-      logConsole(`--- ${loaderName} loaded`);
-      resolve();
-    }
+    logConsole(`--- ${loaderName} loaded`);
+    resolve();
   });
 };
