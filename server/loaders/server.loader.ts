@@ -20,7 +20,7 @@ export const serverLoader = (
       /* Register Routes */
       app.use('/api/v1', v1Router);
 
-      /* After routes */
+      /* Error Middleware after routes */
       app.use(errors());
       app.use((err: any, req, res, next) => {
         let boomed = null;

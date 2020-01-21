@@ -9,12 +9,8 @@ const idParamReqSchema = {
 
 const userCreateReqSchema = {
   [Segments.BODY]: Joi.object().keys({
-    email: Joi.string()
-      .label('a Name')
-      .required()
-      .error(new Error('email is required field!')),
+    email: Joi.string().required(),
     role: Joi.number().integer(),
-
     password: Joi.string().min(4)
   })
 };
