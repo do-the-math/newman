@@ -1,4 +1,4 @@
-import { IUser } from '../data/interfaces/user.interface';
+import { User } from '../data/interfaces/user.interface';
 import UserRepository = require('../data/repositories/user.repository');
 
 export default class UserService {
@@ -9,17 +9,17 @@ export default class UserService {
   }
 
   public createUser = async (
-    authentictedUser: IUser,
-    reqObj: IUser
-  ): Promise<IUser> => {
+    authentictedUser: User,
+    reqObj: User
+  ): Promise<User> => {
     const user = await this.userRepository.createOne(reqObj);
     return user;
   };
 
   public fetchAllUsers = async (
-    authenticatedUser: IUser
-  ): Promise<IUser[]> => {
-    const users: IUser[] = await this.userRepository.fetchAll();
+    authenticatedUser: User
+  ): Promise<User[]> => {
+    const users: User[] = await this.userRepository.fetchAll();
 
     return users;
   };

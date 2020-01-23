@@ -9,6 +9,7 @@
   "private": true,
   "scripts": {
     "lint": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
+    "lint2": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}'",
     "watch": "watch 'yarn lint'",
     "dev": "nodemon ./server/index.ts",
     "debug": "nodemon --inspect ./server/index.ts"

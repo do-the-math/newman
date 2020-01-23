@@ -10,7 +10,7 @@ export interface Address {
   country: string;
 }
 
-export interface IUser {
+export interface User {
   _id?: string;
   email: string;
   password?: string;

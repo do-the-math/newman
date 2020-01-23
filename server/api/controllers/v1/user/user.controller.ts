@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { IUser } from '../../../data/interfaces/user.interface';
+import { User } from '../../../data/interfaces/user.interface';
 import UserService from '../../../services/user.service';
 import Boom from '@hapi/boom';
 
@@ -12,14 +12,14 @@ export default class UserController {
     response: Response,
     next: NextFunction
   ): Promise<void> => {
-    const authenticatedUser: IUser = request.user as IUser;
+    const authenticatedUser: User = request.user as User;
 
-    const reqObj: IUser = Object.assign(request.body, {
+    const reqObj: User = Object.assign(request.body, {
       isActive: true
     });
 
     try {
-      const user: IUser = await this.userService.createUser(
+      const user: User = await this.userService.createUser(
         authenticatedUser,
         reqObj
       );
@@ -34,10 +34,10 @@ export default class UserController {
     response: Response,
     next: NextFunction
   ): Promise<void> => {
-    const authenticatedUser: IUser = request.user as IUser;
+    const authenticatedUser: User = request.user as User;
 
     try {
-      const users: IUser[] = await this.userService.fetchAllUsers(
+      const users: User[] = await this.userService.fetchAllUsers(
         authenticatedUser
       );
       if (users && users.length === 0) {
