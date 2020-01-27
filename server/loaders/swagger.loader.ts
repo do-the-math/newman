@@ -15,13 +15,13 @@ export const swaggerLoader: MicroframeworkLoader = async (
   const loaderName = 'swaggerLoader';
 
   const app = settings.getData('express_app');
-  const isLocal = settings.getData('isLocal');
+  const isLocalDev = settings.getData('isLocalDev');
 
   // path for api specs
-  const envPath = isLocal ? 'server' : 'dist';
+  const envPath = isLocalDev ? 'server' : 'dist';
   const routesPath = [
-    `./${envPath}/api/controllers/v1/*/*.route.*`,
-    `./${envPath}/api/controllers/v1/*/*.swagger.*`
+    `./${envPath}/api/controllers/**/*.route.*`,
+    `./${envPath}/api/controllers/**/*.swagger.*`
   ];
 
   const options = {

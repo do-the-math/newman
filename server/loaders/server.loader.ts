@@ -1,8 +1,10 @@
 import { boomify, isBoom } from '@hapi/boom';
 import { errors } from 'celebrate';
 import { Application } from 'express';
-import { MicroframeworkLoader } from 'microframework';
-import { MicroframeworkSettings } from 'microframework/MicroframeworkSettings';
+import {
+  MicroframeworkLoader,
+  MicroframeworkSettings
+} from 'microframework';
 import v1Router from '../api/controllers/v1';
 import { logBanner, logConsole, logError } from '../utils/log';
 

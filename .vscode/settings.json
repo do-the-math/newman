@@ -11,19 +11,19 @@
   "editor.renderWhitespace": "all",
   "editor.tabCompletion": "on",
   "editor.wordWrap": "wordWrapColumn",
-  // "editor.wrappingIndent": "same",
-  // "editor.wordWrapColumn": 170,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
   "eslint.validate": ["javascript", "typescript"],
 
   "[javascript]": {
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
   "typescript.tsdk": "./node_modules/typescript/lib",
   "[typescript]": {
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
