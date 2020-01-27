@@ -5,13 +5,11 @@ import {
 } from 'microframework';
 import * as path from 'path';
 
-export const publicLoader: MicroframeworkLoader = (
+export const publicLoader: MicroframeworkLoader = async (
   settings: MicroframeworkSettings | undefined
-) => {
-  if (settings) {
-    const root = path.normalize(__dirname + '/../..');
-    const app = settings.getData('express_app');
+): Promise<void> => {
+  const root = path.normalize(__dirname + '/../..');
+  const app = settings.getData('express_app');
 
-    app.use(express.static(`${root}/public`));
-  }
+  app.use(express.static(`${root}/public`));
 };

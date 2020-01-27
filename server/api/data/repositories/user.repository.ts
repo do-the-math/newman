@@ -1,23 +1,24 @@
-import { IUser } from '../interfaces/user.interface';
+import { User } from '../interfaces/user.interface';
 import UserModel from '../schemas/user.schema';
 import { DocumentQuery } from 'mongoose';
 
 class UserRepository {
-  public async createOne(item: IUser): Promise<IUser> {
-    let _user = new UserModel(item);
-    _user = await _user.save();
-    const userCreated = _user.toObject();
+  private queryWithOutPassword = { password: 0 };
 
-    return userCreated;
+  public async createOne(item: User): Promise<User> {
+    const user = new UserModel(item);
+    const response = await (await user.save()).toObject();
+
+    return response;
   }
 
-  public async fetchAllUsers(): Promise<IUser[]> {
-    const _users: IUser[] = await UserModel.find(
+  public async fetchAll(): Promise<User[]> {
+    const response: User[] = await UserModel.find(
       {},
-      { password: 0 }
+      { ...this.queryWithOutPassword }
     ).lean();
 
-    return _users;
+    return response;
   }
 }
 

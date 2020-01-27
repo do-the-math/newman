@@ -1,33 +1,30 @@
-import { MicroframeworkSettings } from 'microframework';
-import { logConsole, logError } from '../utils/log';
+import {
+  MicroframeworkLoader,
+  MicroframeworkSettings
+} from 'microframework';
 import mongoose from 'mongoose';
+import { logConsole, logError } from '../utils/log';
 import config from './../config/config';
 
-export const mongooseLoader = (
-  settings: MicroframeworkSettings
+export const mongooseLoader: MicroframeworkLoader = async (
+  settings: MicroframeworkSettings | undefined
 ): Promise<void> => {
   const loaderName = 'mongooseLoader';
 
-  return new Promise(async (resolve, reject) => {
-    try {
-      if (settings) {
-        mongoose.set('useFindAndModify', false);
-        const connection = await mongoose.connect(config.MONGO_DB_HOST, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-          useCreateIndex: true,
-          useFindAndModify: true
-        });
+  try {
+    mongoose.set('useFindAndModify', false);
+    const connection = await mongoose.connect(config.MONGO_DB_HOST, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: true
+    });
 
-        settings.setData('connection', connection);
-        settings.onShutdown(() => connection.disconnect());
+    settings.setData('connection', connection);
+    settings.onShutdown(() => connection.disconnect());
 
-        logConsole(`--- ${loaderName} loaded`);
-        resolve();
-      }
-    } catch (e) {
-      logError(`--- ${loaderName} error`, e);
-      reject();
-    }
-  });
+    logConsole(`--- ${loaderName} loaded`);
+  } catch (e) {
+    logError(`--- ${loaderName} error`, e);
+  }
 };

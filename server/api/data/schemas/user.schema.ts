@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import mongoose, { Schema, Document } from 'mongoose';
 import { Roles } from '../enums/roles.enum';
-import { IUser } from '../interfaces/user.interface';
+import { User } from '../interfaces/user.interface';
 
 const UserSchema = new Schema(
   {
@@ -84,9 +84,6 @@ UserSchema.statics = {
   }
 };
 
-const UserModel = mongoose.model<IUser & Document>(
-  'UserModel',
-  UserSchema
-);
+const UserModel = mongoose.model<User & Document>('UserModel', UserSchema);
 
 export default UserModel;
