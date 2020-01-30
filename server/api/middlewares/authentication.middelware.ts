@@ -21,6 +21,8 @@ passport.use(localLogin);
 const authLocal = passport.authenticate('local', {
   session: false
 });
-const authJwt = passport.authenticate('jwt', { session: false });
+const authJwt = passport.authenticate('jwt', {
+  session: false
+});
 
 export { authLocal, authJwt };
