@@ -1,6 +1,5 @@
 import { User } from '../interfaces/user.interface';
 import UserModel from '../schemas/user.schema';
-import { DocumentQuery } from 'mongoose';
 
 class UserRepository {
   private queryWithOutPassword = { password: 0 };
@@ -22,4 +21,4 @@ class UserRepository {
   }
 }
 
-export = UserRepository;
+export default UserRepository;

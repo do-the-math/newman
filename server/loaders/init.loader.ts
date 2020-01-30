@@ -3,7 +3,6 @@ import compression from 'compression';
 import express, { Application } from 'express';
 import helmet from 'helmet';
 import { MicroframeworkSettings } from 'microframework';
-import passport from 'passport';
 import config from '../config/config';
 import { logConsole } from '../utils/log';
 
