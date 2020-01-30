@@ -1,4 +1,3 @@
-import { Roles } from './../../../data/enums/roles.enum';
 import { Joi, Segments } from 'celebrate';
 
 const idParamReqSchema = {
