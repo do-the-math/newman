@@ -38,15 +38,15 @@ const UserSchema = new Schema(
 
     isActive: { type: Boolean, default: true },
     isEmailVerified: { type: Boolean, default: false },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
   },
   { timestamps: true }
 );
 
 // will not be included when models are converted to Object(toObject())
-UserSchema.virtual('fullName').get(function() {
-  return `${this.profile.firstName}  ${this.profile.lasName}`;
-});
 
 /**
  * Methods
@@ -59,7 +59,9 @@ UserSchema.methods = {
    * @return {Boolean}
    * @api public
    */
-  comparePassword: (candidatePassword: string): Promise<boolean> => {
+  comparePassword: async function(
+    candidatePassword: string
+  ): Promise<boolean> {
     return bcrypt.compare(candidatePassword, this.password);
   }
 };
@@ -76,14 +78,11 @@ UserSchema.statics = {
    * @param {Function} cb
    * @api private
    */
-  load: function(options, cb) {
-    options.select = options.select || 'name username';
-    return this.findOne(options.criteria)
-      .select(options.select)
-      .exec(cb);
-  }
 };
 
-const UserModel = mongoose.model<User & Document>('UserModel', UserSchema);
+const UserModel = mongoose.model<User & Document>(
+  'UserModel',
+  UserSchema
+);
 
 export default UserModel;

@@ -1,19 +1,23 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "removeComments": true,
-    "target": "es2018",
+    "alwaysStrict": true,
+    "strict": true,
+    "strictNullChecks": true, //
+    "target": "es2015",
     "module": "commonjs",
-    "esModuleInterop": true,
     "moduleResolution": "node",
-    "outDir": "dist",
-    "alwaysStrict": true
+    // "noUnusedParameters": true,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist"
   },
   "typeRoots": ["./node_modules/@types", "./server/types"],
   "include": ["server/**/*.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"],
-
-  "emitDecoratorMetadata": true,
-  "experimentalDecorators": true
+  "exclude": [
+    "node_modules",
+    "src/**/*.spec.ts",
+    "src/**/__fixtures__/**/*"
+  ]
 }

@@ -3,7 +3,6 @@ import { corsLoader } from './loaders/cors.loader';
 import { serverLoader } from './loaders/server.loader';
 import { initLoader } from './loaders/init.loader';
 import { mongooseLoader } from './loaders/mongoose.loader';
-import { publicLoader } from './loaders/public.loader';
 import { swaggerLoader } from './loaders/swagger.loader';
 import { logError, logInfo } from './utils/log';
 
@@ -14,7 +13,6 @@ bootstrapMicroframework({
   loaders: [
     initLoader,
     corsLoader,
-    publicLoader,
     swaggerLoader,
 
     // DB Loader
@@ -25,7 +23,7 @@ bootstrapMicroframework({
   ]
 })
   .then(() => {
-    logInfo('Start Development');
+    logInfo('All Loaders Loaded');
   })
   .catch((error) => {
     logError('application erry', error);

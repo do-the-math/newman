@@ -8,7 +8,9 @@ export default class UserService {
     authentictedUser: User,
     reqObj: User
   ): Promise<User> => {
-    const user = await this.userRepository.createOne(reqObj);
+    const user = await this.userRepository.createOne(
+      reqObj
+    );
     return user;
   };
 
