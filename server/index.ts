@@ -1,5 +1,4 @@
 import { bootstrapMicroframework } from 'microframework';
-import { authenticationLoader } from './loaders/authentication.loader';
 import { corsLoader } from './loaders/cors.loader';
 import { serverLoader } from './loaders/server.loader';
 import { initLoader } from './loaders/init.loader';
@@ -25,7 +24,7 @@ bootstrapMicroframework({
     serverLoader
   ]
 })
-  .then((data) => {
+  .then(() => {
     logInfo('Start Development');
   })
   .catch((error) => {

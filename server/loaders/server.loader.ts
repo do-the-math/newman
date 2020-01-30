@@ -20,7 +20,7 @@ export const serverLoader: MicroframeworkLoader = async (
 
   /* Error Middleware after routes */
   app.use(errors());
-  app.use((err: any, req, res, next) => {
+  app.use((err, req, res, next) => {
     let boomed = null;
     if (!isBoom(err)) {
       const errorResponse = {
