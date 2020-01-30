@@ -1,5 +1,7 @@
 {
   "workbench.tree.indent": 20,
+  "workbench.editor.showTabs": true,
+
   // "workbench.colorTheme": "Material Theme Palenight",
 
   "files.insertFinalNewline": true,
