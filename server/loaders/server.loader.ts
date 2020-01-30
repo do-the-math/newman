@@ -7,6 +7,7 @@ import {
 } from 'microframework';
 import v1Router from '../api/controllers/v1';
 import { logBanner, logConsole, logError } from '../utils/log';
+import util from 'util';
 
 export const serverLoader: MicroframeworkLoader = async (
   settings: MicroframeworkSettings | undefined
@@ -40,17 +41,12 @@ export const serverLoader: MicroframeworkLoader = async (
       .json(Object.assign(boomed.output.payload, boomed.data));
   });
 
-  return new Promise((resolve, reject) => {
-    try {
-      /* Start listenting */
-      app.listen(port, () => {
-        logConsole(`--- ${loaderName} loaded`);
-        logBanner(`${appName} started listening on port:${port}`);
-        resolve();
-      });
-    } catch (err) {
-      logError(`--- ${loaderName} error`, err);
-      reject();
-    }
-  });
+  const server = util.promisify(app.listen);
+  try {
+    await server.call(app, port);
+  } catch (error) {
+    logError(`--- ${loaderName} error`, error);
+  }
+  logConsole(`--- ${loaderName} loaded`);
+  logBanner(`${appName} started listening on port:${port}`);
 };
