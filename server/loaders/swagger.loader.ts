@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { NextFunction, Request, Response } from 'express';
 import BasicAuth from 'express-basic-auth';
 import {
@@ -11,12 +10,12 @@ import config from '../config/config';
 import { logConsole } from '../utils/log';
 
 export const swaggerLoader: MicroframeworkLoader | any = (
-  settings: MicroframeworkSettings | undefined
+  settings: MicroframeworkSettings
 ): any => {
   const loaderName = 'swaggerLoader';
   return new Promise((resolve, reject) => {
-    const app = settings!.getData('express_app');
-    const isLocalDev = settings!.getData('isLocalDev');
+    const app = settings.getData('express_app');
+    const isLocalDev = settings.getData('isLocalDev');
 
     // path for api specs
     const envPath = isLocalDev ? 'server' : 'dist';

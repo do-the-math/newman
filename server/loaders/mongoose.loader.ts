@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import {
   MicroframeworkLoader,
   MicroframeworkSettings
@@ -8,7 +7,7 @@ import { logConsole, logError } from '../utils/log';
 import config from './../config/config';
 
 export const mongooseLoader: MicroframeworkLoader | any = (
-  settings: MicroframeworkSettings | undefined
+  settings: MicroframeworkSettings
 ): any => {
   const loaderName = 'mongooseLoader';
 
@@ -25,8 +24,8 @@ export const mongooseLoader: MicroframeworkLoader | any = (
         }
       );
 
-      settings!.setData('connection', connection);
-      settings!.onShutdown(() => connection.disconnect());
+      settings.setData('connection', connection);
+      settings.onShutdown(() => connection.disconnect());
 
       logConsole(`--- ${loaderName} loaded`);
       resolve();

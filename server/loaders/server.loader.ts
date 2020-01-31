@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { boomify, isBoom } from '@hapi/boom';
 import { errors } from 'celebrate';
 import {
@@ -19,17 +18,17 @@ import {
 } from '../utils/log';
 import util from 'util';
 
-export const serverLoader: MicroframeworkLoader = async (
-  settings: MicroframeworkSettings | undefined
-): Promise<void> => {
+export const serverLoader: MicroframeworkLoader | any = (
+  settings: MicroframeworkSettings
+): any => {
   const loaderName = 'serverLoader';
 
   return new Promise(async (resolve, reject) => {
-    const appName: string = settings!.getData('appName');
-    const app: Application = settings!.getData(
+    const appName: string = settings.getData('appName');
+    const app: Application = settings.getData(
       'express_app'
     );
-    const port: number = settings!.getData('port');
+    const port: number = settings.getData('port');
 
     /* Register Routes */
     app.use('/api/v1', v1Router);

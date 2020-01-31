@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import cors, { CorsOptions } from 'cors';
 import {
   MicroframeworkLoader,
@@ -8,12 +7,12 @@ import config from '../config/config';
 import { logConsole, logError } from '../utils/log';
 
 export const corsLoader: MicroframeworkLoader | any = (
-  settings: MicroframeworkSettings | undefined
+  settings: MicroframeworkSettings
 ): any => {
   const loaderName = 'corsLoader';
 
   return new Promise((resolve, reject) => {
-    const app = settings!.getData('express_app');
+    const app = settings.getData('express_app');
 
     const whitelist = config.WHITE_LIST_URL;
 
