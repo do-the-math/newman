@@ -1,32 +1,42 @@
 import bodyParser from 'body-parser';
 import compression from 'compression';
-import express, { Application } from 'express';
+import express, {
+  Application,
+  static as useStatic
+} from 'express';
 import helmet from 'helmet';
-import { MicroframeworkSettings } from 'microframework';
+import {
+  MicroframeworkLoader,
+  MicroframeworkSettings
+} from 'microframework';
 import config from '../config/config';
 import { logConsole } from '../utils/log';
+import * as path from 'path';
 
-export const initLoader = async (
+export const initLoader: MicroframeworkLoader | any = (
   settings: MicroframeworkSettings
-): Promise<void> => {
+): any => {
   const loaderName = 'initLoader';
 
-  const app: Application = express();
-  const port: number = parseInt(config.PORT, 10);
-  const appName: string = config.APP_NAME;
-  const isLocal: boolean = config.NODE_ENV === 'local';
-  const isDev: boolean = config.NODE_ENV === 'development';
+  return new Promise((resolve, reject) => {
+    const app: Application = express();
+    const port: number = parseInt(config.PORT, 10);
+    const appName: string = config.APP_NAME;
+    const isLocalDev: boolean = config.NODE_ENV === 'local';
 
-  app.use(compression());
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
-  app.use(helmet());
+    const root = path.normalize(`${__dirname}/../..`);
+    app.use(useStatic(`${root}/public`));
+    app.use(compression());
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    app.use(helmet());
 
-  settings.setData('express_app', app);
-  settings.setData('port', port);
-  settings.setData('appName', appName);
-  settings.setData('isLocal', isLocal);
-  settings.setData('isDev', isDev);
+    settings.setData('express_app', app);
+    settings.setData('port', port);
+    settings.setData('appName', appName);
+    settings.setData('isLocalDev', isLocalDev);
 
-  logConsole(`--- ${loaderName} loaded`);
+    logConsole(`--- ${loaderName} loaded`);
+    resolve();
+  });
 };

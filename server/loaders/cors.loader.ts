@@ -1,4 +1,4 @@
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import {
   MicroframeworkLoader,
   MicroframeworkSettings
@@ -6,17 +6,17 @@ import {
 import config from '../config/config';
 import { logConsole, logError } from '../utils/log';
 
-export const corsLoader: MicroframeworkLoader = async (
-  settings: MicroframeworkSettings | undefined
-): Promise<void> => {
+export const corsLoader: MicroframeworkLoader | any = (
+  settings: MicroframeworkSettings
+): any => {
   const loaderName = 'corsLoader';
 
-  try {
+  return new Promise((resolve, reject) => {
     const app = settings.getData('express_app');
 
     const whitelist = config.WHITE_LIST_URL;
 
-    const corsOptions = {
+    const corsOptions: CorsOptions = {
       origin: (origin, callback) => {
         callback(null, true);
       },
@@ -25,7 +25,6 @@ export const corsLoader: MicroframeworkLoader = async (
     app.use(cors(corsOptions));
 
     logConsole(`--- ${loaderName} loaded`);
-  } catch (e) {
-    logError(`--- ${loaderName} error`, e);
-  }
+    resolve();
+  });
 };
