@@ -19,11 +19,12 @@ import Swaggeruiexpress from 'swagger-ui-express';
 import v1Router from './api/controllers/v1';
 import config from './config/config';
 import { logError, logInfo } from './utils/log';
+import approot from 'app-root-path';
 
 const app: Application = express();
-const root = path.normalize(`${__dirname}/..`);
+// const root = path.normalize(`${__dirname}/..`);
 
-app.use(useStatic(`${root}/public`));
+app.use(useStatic(`${approot}/public`));
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
