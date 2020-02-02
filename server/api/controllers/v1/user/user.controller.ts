@@ -40,9 +40,9 @@ export default class UserController {
       const users: User[] = await this.userService.fetchAllUsers(
         authenticatedUser
       );
-      if (users && users.length === 0) {
-        throw Boom.notFound('No User Found');
-      }
+      // if (users && users.length === 0) {
+      //   throw Boom.notFound('No User Found');
+      // }
       response.status(httpStatus.OK).send(users);
     } catch (error) {
       next(error);
