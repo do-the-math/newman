@@ -14,7 +14,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module', // Allows for the use of imports
-    project: './tsconfig.json',
+    // project: './tsconfig.json',
+    project: ['./tsconfig.json'],
     tsconfigRootDir: __dirname
   },
   rules: {
@@ -45,5 +46,5 @@ module.exports = {
     //   }
     // ]
   },
-  ignorePatterns: ['dist/', 'node_modules/']
+  ignorePatterns: ['dist/', 'node_modules/', 'coverage/']
 };
