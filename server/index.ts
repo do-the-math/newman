@@ -16,8 +16,8 @@ import mongoose from 'mongoose';
 import * as path from 'path';
 import Swaggerjsdoc from 'swagger-jsdoc';
 import Swaggeruiexpress from 'swagger-ui-express';
-import config from './config/config';
 import v1Router from './api/controllers/v1';
+import config from './config/config';
 import { logError, logInfo } from './utils/log';
 
 const app: Application = express();

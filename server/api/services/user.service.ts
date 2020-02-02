@@ -11,6 +11,7 @@ export default class UserService {
     const user = await this.userRepository.createOne(
       reqObj
     );
+
     return user;
   };
 

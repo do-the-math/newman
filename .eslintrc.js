@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   parser: '@typescript-eslint/parser',
   extends: [
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
@@ -22,13 +23,19 @@ module.exports = {
     'no-unreachable': 'error',
     'no-useless-call': 'error',
     'no-useless-catch': 'error',
+    'newline-before-return': 'error',
     'prefer-object-spread': 'error',
     'prefer-spread': 'error',
+    'prefer-arrow-callback': [
+      'error',
+      { allowNamedFunctions: true }
+    ],
     'prefer-template': 'error',
     'vars-on-top': 'error',
     'no-param-reassign': 'error',
     'no-multi-assign': 'error',
     'no-duplicate-imports': 'error',
+    'no-shadow': 'error',
 
     '@typescript-eslint/no-use-before-define': ['error'],
     '@typescript-eslint/explicit-function-return-type': [
