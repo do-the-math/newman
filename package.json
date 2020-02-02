@@ -18,7 +18,9 @@
     "compile": "ts-node build.ts && tsc",
     "build2": "yarn clean && yarn install && yarn compile",
     "postinstall-2": "yarn compile",
-    "upgradepkg": "yarn upgrade --latest"
+    "upgradepkg": "yarn upgrade --latest",
+    "test": "jest --forceExit --coverage --verbose",
+    "test2": "jest --forceExit --verbose"
   },
   "dependencies": {
     "@hapi/boom": "9.0.0",
@@ -39,7 +41,7 @@
     "http-status": "1.4.0",
     "jsonwebtoken": "8.5.1",
     "lodash": "4.17.15",
-    "microframework": "0.6.4",
+    "mockgoose": "^8.0.4",
     "mongoose": "5.7.7",
     "passport": "0.4.1",
     "passport-cookie": "1.0.6",
@@ -60,8 +62,8 @@
     "@types/express": "4.17.2",
     "@types/hapi__joi": "16.0.8",
     "@types/helmet": "0.0.45",
+    "@types/jest": "^25.1.1",
     "@types/lodash": "4.14.149",
-    "@types/mocha": "^7.0.1",
     "@types/mongoose": "5.5.41",
     "@types/node": "13.5.0",
     "@types/passport": "1.0.2",
@@ -69,14 +71,17 @@
     "@types/supertest": "^2.0.8",
     "@types/swagger-jsdoc": "3.0.2",
     "@types/swagger-ui-express": "4.1.1",
+    "@types/uuid": "^3.4.7",
     "@typescript-eslint/eslint-plugin": "2.11.0",
     "@typescript-eslint/parser": "2.11.0",
     "chai": "^4.2.0",
     "eslint": "6.7.2",
     "eslint-config-prettier": "6.7.0",
     "eslint-plugin-prettier": "3.1.1",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "prettier": "1.19.1",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.1.0"
   }
 }
