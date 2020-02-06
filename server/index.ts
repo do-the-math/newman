@@ -18,7 +18,6 @@ import Swaggerjsdoc from 'swagger-jsdoc';
 import Swaggeruiexpress from 'swagger-ui-express';
 import v1Router from './api/controllers/v1';
 import config from './config/config';
-import { logError, logInfo } from './utils/log';
 import approot from 'app-root-path';
 
 const app: Application = express();
@@ -143,12 +142,12 @@ app.use(
   }
 );
 
-app.listen(config.PORT, (error) => {
+app.listen(config.PORT, (error: any) => {
   if (error) {
-    logError(`---  error`, error);
+    console.log(`---  error`, error);
   }
 
-  logInfo(`server running on port ${config.PORT}`);
+  console.log(`server running on port ${config.PORT}`);
 });
 
 export default app;
