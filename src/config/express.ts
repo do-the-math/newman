@@ -8,7 +8,6 @@ import express, {
   Response,
   static as useStatic
 } from 'express';
-import * as path from 'path';
 import v1Router from '../api';
 import swaggerUi from 'swagger-ui-express';
 import specs from './swagger/docs_generator';
@@ -18,7 +17,6 @@ const app: Application = express();
 
 app.use((req, res, next) => {
   console.log('--------->', req.method, req.url);
-
   next();
 });
 
@@ -41,11 +39,13 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use(errors());
 app.use(
   (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     err: any,
     req: Request,
     res: Response,
     next: NextFunction
   ) => {
+    console.log(err);
     let boomed = null;
     if (!isBoom(err)) {
       const errorResponse = {

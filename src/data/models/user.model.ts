@@ -81,7 +81,7 @@ UserSchema.statics = {
 };
 
 const UserModel = mongoose.model<User & Document>(
-  'UserModel',
+  'Users',
   UserSchema
 );
 
