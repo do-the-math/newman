@@ -8,7 +8,6 @@ import express, {
   Response,
   static as useStatic
 } from 'express';
-import * as path from 'path';
 import v1Router from '../api';
 import swaggerUi from 'swagger-ui-express';
 import specs from './swagger/docs_generator';
@@ -18,7 +17,6 @@ const app: Application = express();
 
 app.use((req, res, next) => {
   console.log('--------->', req.method, req.url);
-
   next();
 });
 
