@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../../../../server';
+import app from '../../../../src';
 
 describe('Users API', () => {
   it('GET / get all users', async () => {

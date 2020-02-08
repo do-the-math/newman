@@ -2,7 +2,7 @@ import swaggerJSdocs from 'swagger-jsdoc';
 import config from '../config';
 
 const isLocalDev = true;
-const envPath = isLocalDev ? 'server' : 'dist';
+const envPath = isLocalDev ? 'src' : 'dist';
 const routesPath = [
   `./${envPath}/api/controllers/**/*.route.*`,
   `./${envPath}/api/controllers/**/*.swagger.*`

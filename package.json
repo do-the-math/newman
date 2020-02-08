@@ -14,9 +14,9 @@
   "scripts": {
     "lint:fix": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
-    "dev": "nodemon ./server/index.ts",
-    "start": "echo START && node dist/server/index.js",
-    "start3": "echo START3 &&  node dist/server/index.js",
+    "dev": "nodemon ./src/index.ts",
+    "start": "echo START && node dist/src/index.js",
+    "start3": "echo START3 &&  node dist/src/index.js",
     "compile": "echo COMPILE && tsc",
     "build": "echo BUILD",
     "build2": "yarn clean && yarn install && yarn compile",

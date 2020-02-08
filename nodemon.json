@@ -2,8 +2,13 @@
   "execMap": {
     "ts": "ts-node"
   },
-  "watch": ["server"],
+  "watch": ["src"],
   "ext": "ts,js,json,yaml,yml,pug,css",
-  "ignore": ["test/**/*.ts", "test/**/*.spec.ts", ".git", "node_modules"],
-  "exec": "node --inspect -r ts-node/register ./server/index.ts"
+  "ignore": [
+    "test/**/*.ts",
+    "test/**/*.spec.ts",
+    ".git",
+    "node_modules"
+  ],
+  "exec": "node --inspect -r ts-node/register ./src/index.ts"
 }
