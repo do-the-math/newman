@@ -9,7 +9,7 @@ import express, {
   static as useStatic
 } from 'express';
 import * as path from 'path';
-import v1Router from './../api/controllers/v1';
+import v1Router from '../api';
 import swaggerUi from 'swagger-ui-express';
 import specs from './swagger/docs_generator';
 import appRoot from 'app-root-path';

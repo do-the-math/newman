@@ -21,7 +21,7 @@
  *         lastName:
  *           type: number
  *
- *     UserArray:
+ *     UserList:
  *       type: array
  *       items:
  *         $ref: '#/components/schemas/User'
