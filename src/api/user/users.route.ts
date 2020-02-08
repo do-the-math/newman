@@ -60,7 +60,7 @@ userRouter.post(
  *          content:
  *            application/json:
  *              schema:
- *                $ref: "#/components/schemas/UserArray"
+ *                $ref: "#/components/schemas/UserList"
  *       '404':
  *          description: Not found
  *       '400':
