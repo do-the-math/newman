@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { User } from '../../../data/interfaces/user.interface';
-import UserService from '../../../services/user.service';
+import { User } from './../../data/interfaces/user.interface';
+import UserService from '../../services/user.service';
 import Boom from '@hapi/boom';
 
 export default class UserController {

@@ -1,12 +1,10 @@
 import swaggerJSdocs from 'swagger-jsdoc';
 import config from '../config';
+import appRoot from 'app-root-path';
 
-const isLocalDev = true;
-const envPath = isLocalDev ? 'src' : 'dist';
-const routesPath = [
-  `./${envPath}/api/controllers/**/*.route.*`,
-  `./${envPath}/api/controllers/**/*.swagger.*`
-];
+const envPath =
+  config.NODE_ENV === 'local' ? 'src' : 'dist';
+const routesPath = [`${appRoot}/${envPath}/api/**/*.ts`];
 
 export default swaggerJSdocs({
   swaggerDefinition: {

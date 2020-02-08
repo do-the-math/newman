@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import mongoose, { Schema, Document } from 'mongoose';
-import { Roles } from '../enums/roles.enum';
+import Roles from '../enums/roles.enum';
 import { User } from '../interfaces/user.interface';
 
 const UserSchema = new Schema(
