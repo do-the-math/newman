@@ -40,7 +40,12 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
 // Common error formater
 app.use(errors());
 app.use(
-  (err: any, req: Request, res: Response, next: NextFunction) => {
+  (
+    err: any,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
     let boomed = null;
     if (!isBoom(err)) {
       const errorResponse = {
@@ -55,7 +60,9 @@ app.use(
 
     return res
       .status(boomed.output.statusCode)
-      .json(Object.assign(boomed.output.payload, boomed.data));
+      .json(
+        Object.assign(boomed.output.payload, boomed.data)
+      );
   }
 );
 
