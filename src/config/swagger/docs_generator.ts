@@ -4,7 +4,10 @@ import appRoot from 'app-root-path';
 
 const envPath =
   config.NODE_ENV === 'local' ? 'src' : 'dist';
-const routesPath = [`${appRoot}/${envPath}/api/**/*.ts`];
+const routesPath = [
+  `${appRoot}/${envPath}/api/**/*.ts`,
+  `${appRoot}/${envPath}/api/**/*.js`
+];
 
 export default swaggerJSdocs({
   swaggerDefinition: {
