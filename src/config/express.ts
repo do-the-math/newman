@@ -41,6 +41,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
 app.use(errors());
 app.use(
   (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     err: any,
     req: Request,
     res: Response,
