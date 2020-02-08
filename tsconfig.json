@@ -2,11 +2,10 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "strict": true,
-    "strictNullChecks": true, //
-    "target": "es2015",
+    "strictNullChecks": true,
+    "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
-    // "noUnusedParameters": true,
     "removeComments": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -14,7 +13,7 @@
     "outDir": "dist"
   },
   "typeRoots": ["./node_modules/@types", "./server/types"],
-  "include": ["server/**/*.ts", "test/**/*.ts"],
+  "include": ["server/**/*.ts", "test/**/*.ts", "build.ts"],
   "exclude": [
     "node_modules",
     "src/**/*.spec.ts",

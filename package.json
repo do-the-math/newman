@@ -8,17 +8,23 @@
   "license": "UNLICENSED",
   "private": true,
   "engines": {
-    "node": "12.14.0"
+    "node": "12.14.0",
+    "yarn": "1.21.1"
   },
   "scripts": {
     "lint:fix": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
     "dev": "nodemon ./server/index.ts",
-    "start": "node dist/index.js",
-    "compile": "ts-node build.ts && tsc",
+    "start": "echo START && node dist/server/index.js",
+    "start3": "echo START3 &&  node dist/server/index.js",
+    "compile": "echo COMPILE && tsc",
+    "build": "echo BUILD",
     "build2": "yarn clean && yarn install && yarn compile",
-    "postinstall-2": "yarn compile",
-    "upgradepkg": "yarn upgrade --latest",
+    "preinstall": "echo PREINSTALL",
+    "install": "echo INSTALL",
+    "postinstall": "echo POSTINSTALL &&  yarn compile",
+    "heroku-prebuild": "echo HEROKU_PREBUILD",
+    "heroku-postbuild": "echo HEROKU_POSTBUUILD",
     "test": "jest --forceExit --coverage --verbose",
     "test2": "jest --forceExit --verbose"
   },
@@ -51,7 +57,10 @@
     "swagger-ui-express": "4.1.2",
     "ts-node": "^8.5.4",
     "typescript": "3.7.2",
-    "uuid": "^3.4.0"
+    "uuid": "^3.4.0",
+    "chai": "^4.2.0",
+    "supertest": "^4.0.2",
+    "jest": "^25.1.0"
   },
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
@@ -74,14 +83,11 @@
     "@types/uuid": "^3.4.7",
     "@typescript-eslint/eslint-plugin": "2.11.0",
     "@typescript-eslint/parser": "2.11.0",
-    "chai": "^4.2.0",
     "eslint": "6.7.2",
     "eslint-config-prettier": "6.7.0",
     "eslint-plugin-prettier": "3.1.1",
-    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "prettier": "1.19.1",
-    "supertest": "^4.0.2",
     "ts-jest": "^25.1.0"
   }
 }
