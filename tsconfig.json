@@ -12,8 +12,8 @@
     "allowSyntheticDefaultImports": true,
     "outDir": "dist"
   },
-  "typeRoots": ["./node_modules/@types", "./server/types"],
-  "include": ["server/**/*.ts", "test/**/*.ts", "build.ts"],
+  "typeRoots": ["./node_modules/@types", "./src/types"],
+  "include": ["src/**/*.ts", "test/**/*.ts", "build.ts"],
   "exclude": [
     "node_modules",
     "src/**/*.spec.ts",

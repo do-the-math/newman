@@ -12,17 +12,17 @@ import * as path from 'path';
 import v1Router from './../api/controllers/v1';
 import swaggerUi from 'swagger-ui-express';
 import specs from './swagger/docs_generator';
+import appRoot from 'app-root-path';
 
 const app: Application = express();
 
 app.use((req, res, next) => {
   console.log('--------->', req.method, req.url);
+
   next();
 });
 
-const root = path.normalize(`${__dirname}/..`);
-
-app.use(useStatic(`${root}/public`));
+app.use(useStatic(`${appRoot}/public`));
 
 // Body parser
 app.use(express.json());
