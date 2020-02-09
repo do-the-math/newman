@@ -39,8 +39,7 @@ export default class CommentController {
     const { commentId, userId } = request.body;
 
     try {
-      let comments: any = await CommentModel.find().lean();
-      console.log(comments);
+      const comments: any = await CommentModel.find().lean();
       response.status(httpStatus.OK).send(comments);
     } catch (error) {
       next(error);
