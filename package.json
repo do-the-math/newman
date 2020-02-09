@@ -15,7 +15,7 @@
     "lint:fix": "tsc --noEmit && eslint '*/**/*.{js,ts,tsx}' --fix",
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
     "dev": "nodemon ./src/index.ts",
-    "start": "echo START && node dist/src/index.js",
+    "start:dist": "echo START DIST && node ./dist/src/index.js",
     "start:prod": "echo START2 && ts-node ./src/index.ts",
     "compile": "echo COMPILE && tsc",
     "build": "echo BUILD",

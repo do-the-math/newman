@@ -2,7 +2,7 @@ import swaggerJSdocs from 'swagger-jsdoc';
 import config from '../config';
 import appRoot from 'app-root-path';
 
-const routesPath = [`${appRoot}/src/api/**/*.ts`];
+const routesPath = ['**/api/**/*.ts'];
 
 export default swaggerJSdocs({
   swaggerDefinition: {
