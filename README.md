@@ -6,3 +6,5 @@
 2. snake_case for DB and request/response
 3. URI plurals
 4. yarn upgrade --latest to upgrade all packages and update package.json file as well
+5. Config keys - NPM_CONFIG_PRODUCTION = true (devDep will prune), YARN_PRODUCTION,NODE_ENV="production" default
+6.
