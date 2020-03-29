@@ -59,7 +59,7 @@ UserSchema.methods = {
    * @return {Boolean}
    * @api public
    */
-  comparePassword: async function(
+  comparePassword: async function (
     candidatePassword: string
   ): Promise<boolean> {
     return bcrypt.compare(candidatePassword, this.password);
